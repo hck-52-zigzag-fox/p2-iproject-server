@@ -8,7 +8,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MahesaKahfi/p2-iproject-server.git"
+    "url": "git+https://github.com/MahesaKahfi/p2-iproject-server.git",
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
   "homepage": "https://github.com/MahesaKahfi/p2-iproject-server#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.8.0",
