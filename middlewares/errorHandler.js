@@ -32,6 +32,12 @@ module.exports = {
     } else if (err.name === "ConflictLoginUser") {
       msg = "wrong email or password";
       code = 401;
+    } else if (err.name === "NoData") {
+      msg = "no data found";
+      code = 404;
+    } else if (err.name === "ConflictEmailMentor") {
+      msg = "email already use by other mentors";
+      code = 400;
     } else {
       msg = "internal server error";
       code = 500;
