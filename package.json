@@ -1,0 +1,20 @@
+{
+  "name": "p2-iproject-server-agus",
+  "version": "1.0.0",
+  "description": "Individual Project - Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agusalih09/p2-iproject-server-agus.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agusalih09/p2-iproject-server-agus/issues"
+  },
+  "homepage": "https://github.com/agusalih09/p2-iproject-server-agus#readme"
+}
