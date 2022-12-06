@@ -1,5 +1,7 @@
 "use strict";
 
+const { hashPassword } = require('../helpers/bcrypt');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -18,17 +20,17 @@ module.exports = {
       [
         {
           email: "nadya@gmail.com",
-          password: "12345",
+          password: hashPassword("12345"),
           role: "Customer",
         },
         {
           email: "admin@gmail.com",
-          password: "12345",
+          password: hashPassword("12345"),
           role: "Admin",
         },
         {
           email: "nadya1@gmail.com",
-          password: "12345",
+          password: hashPassword("12345"),
           role: "Customer",
         },
       ],
