@@ -1,0 +1,35 @@
+{
+  "name": "p2-iproject-server-petshop",
+  "version": "1.0.0",
+  "description": "Individual Project - Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --runInBand --forceExit --setTimeout=500 --verbose",
+    "start": "node bin/www",
+    "db:create": "sequelize db:drop && sequelize db:create",
+    "db:migrate": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
+    "db:test": "sequelize --env=test db:migrate:undo:all && sequelize --env=test db:migrate && sequelize --env=test db:seed:all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ansrdyn/p2-iproject-server-petshop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ansrdyn/p2-iproject-server-petshop/issues"
+  },
+  "homepage": "https://github.com/Ansrdyn/p2-iproject-server-petshop#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.8.0",
+    "sequelize": "^6.26.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.5.2"
+  }
+}
