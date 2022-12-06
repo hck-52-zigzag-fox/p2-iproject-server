@@ -1,5 +1,5 @@
 async function errHandler(err, req, res, next) {
-  console.log(err);
+  console.log(err.code, "<<<");
   if (err.name == "SequelizeValidationError" || err.name == "BadRequest") {
     let errors = [];
     err.errors.forEach((el) => {
@@ -37,6 +37,10 @@ async function errHandler(err, req, res, next) {
   } else if (err.name == "AlreadyFavorite") {
     res.status(400).json({
       message: "Already Favorite",
+    });
+  } else if (err.code == "LIMIT_FILE_SIZE") {
+    res.status(400).json({
+      message: "Maximum Capacity file reached",
     });
   } else {
     res.status(500).json({ message: "Internal Server Error" });

@@ -3,7 +3,7 @@ const { ProfileController } = require("../controllers/");
 const { authentication, upload } = require("../middlewares");
 router.post(
   "/create",
-  upload.single("profilePicture"),
+  upload.single("profilePict"),
   ProfileController.createProfile
 );
 
