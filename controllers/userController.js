@@ -17,8 +17,9 @@ class UserController {
         address: createUser.address,
       });
     } catch (error) {
-      console.log(error);
-      res.status(500).json(error);
+      // console.log(error);
+      // res.status(500).json(error);
+      next(error);
     }
   }
 
@@ -26,10 +27,10 @@ class UserController {
     try {
       const { email, password } = req.body;
       if (!email) {
-        console.log("email gaada");
+        throw { name: "BadRequest Email" };
       }
       if (!password) {
-        console.log("password gaada");
+        throw { name: "BadRequest Password" };
       }
       const user = await User.findOne({
         where: {
@@ -38,20 +39,21 @@ class UserController {
       });
 
       if (!user) {
-        console.log("user gaada");
+        throw { name: "invalid_credentials" };
       }
 
       const comparePass = compareHash(password, user.password);
 
       if (!comparePass) {
-        console.log("SALAH");
+        throw { name: "invalid_credentials" };
       }
 
       const access_token = createToken({ email: user.email, id: user.id });
       res.status(200).json({ access_token });
     } catch (error) {
-      console.log(error);
-      res.status(500).json(error);
+      // console.log(error);
+      // res.status(500).json(error);
+      next(error);
     }
   }
 }
