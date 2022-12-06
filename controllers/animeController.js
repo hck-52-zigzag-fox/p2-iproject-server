@@ -110,18 +110,20 @@ class Controller {
         params.order_by = order_by;
       }
       let { data } = axios.get("https://api.jikan.moe/v4/anime", { params });
-      res.status(200).json(data)
+      res.status(200).json(data);
     } catch (error) {
       next(error);
     }
   }
-  static async getAnimeById (req, res ,next) {
+  static async getAnimeById(req, res, next) {
     try {
-      let {id} = req.query
-      let {data} = axios.get('https://api.jikan.moe/v4/anime/' + id + '/full')
-      res.status(200).json(data)
+      let { id } = req.query;
+      let { data } = axios.get(
+        "https://api.jikan.moe/v4/anime/" + id + "/full"
+      );
+      res.status(200).json(data);
     } catch (error) {
-      next(error)
+      next(error);
     }
   }
 }

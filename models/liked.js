@@ -15,9 +15,70 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Liked.init({
-    UserId: DataTypes.INTEGER,
-    AnimeId: DataTypes.INTEGER,
-    reccomended: DataTypes.BOOLEAN
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: "Mal Id cannot be empty" },
+        notNull: { msg: "Mal Id cannot be empty" },
+      },
+    },
+    malId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: "Mal Id cannot be empty" },
+        notNull: { msg: "Mal Id cannot be empty" },
+      },
+    },
+    title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: { msg: "Title cannot be empty" },
+          notNull: { msg: "Title cannot be empty" },
+        },
+      },
+    type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: { msg: "Type cannot be empty" },
+          notNull: { msg: "Type cannot be empty" },
+        },
+      },
+    malUrl: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: { msg: "Mal Url cannot be empty" },
+          notNull: { msg: "Mal Url cannot be empty" },
+        },
+      },
+    posterUrl: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: { msg: "Poster Url cannot be empty" },
+          notNull: { msg: "Poster Url cannot be empty" },
+        },
+      },
+    released: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: "Released cannot be empty" },
+        notNull: { msg: "Released cannot be empty" },
+      },
+    },
+    recommended: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: "Recommended cannot be empty" },
+        notNull: { msg: "Recommended cannot be empty" },
+      },
+    },
   }, {
     sequelize,
     modelName: 'Liked',

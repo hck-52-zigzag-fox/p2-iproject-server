@@ -17,11 +17,31 @@ module.exports = {
           key: "id",
         },
       },
-      AnimeId: {
+      malId: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      reccomended: {
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      type: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      malUrl: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      posterUrl: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      released: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      recommended: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },

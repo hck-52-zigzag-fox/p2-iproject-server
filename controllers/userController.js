@@ -31,6 +31,7 @@ class Controller {
         if (checkPassword) {
           let access_token = sign(foundUser.id)
           res.status(200).json({access_token, username: foundUser.username})
+          req.user.id = foundUser.id
         } else {
           throw { name: "validation" };
         }
