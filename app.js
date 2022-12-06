@@ -7,6 +7,9 @@ const morgan = require("morgan");
 
 const app = express();
 
+const routes = require("./routes");
+const { errorHandler } = require("./middlewares/errorHandler");
+
 if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
 }
@@ -14,6 +17,6 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.get("/", (req, res, next) => res.send("server is up"));
-
+app.use(routes);
+app.use(errorHandler);
 module.exports = app;
