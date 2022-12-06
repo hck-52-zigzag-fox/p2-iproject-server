@@ -22,21 +22,21 @@ function errorHandler(err, req, res, next) {
       statusCode = 404;
       message = "Product Not Found";
       break;
+    case "Order Not Found":
+      statusCode = 404;
+      message = "Order Not Found";
+      break;
     case "Forbidden":
       statusCode = 403;
       message = "You don't have access";
       break;
     case "SequelizeValidationError":
       statusCode = 400;
-      message = err.errors.map((error) => {
-        return error.message;
-      })[0];
+      message = err.errors[0].message;
       break;
     case "SequelizeUniqueConstraintError":
       statusCode = 400;
-      message = err.errors.map((error) => {
-        return error.message;
-      })[0];
+      message = err.errors[0].message;
       break;
     case "Id Not Found":
       statusCode = 404;
