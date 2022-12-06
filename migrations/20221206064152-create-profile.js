@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       imgUrl: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       gender: {
