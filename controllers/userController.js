@@ -4,14 +4,11 @@ const { User } = require("../models");
 class UserController {
   static async register(req, res, next) {
     try {
-      const { email, password, username, phoneNumber, address } = req.body;
+      const { email, password, username } = req.body;
       const newUser = await User.create({
         email,
         password,
         username,
-        role: "admin",
-        phoneNumber,
-        address,
       });
       // if (newUser) {
       res.status(201).json({
