@@ -6,20 +6,17 @@ const verify = require("../helpers/google");
 class UserController {
   static async register(req, res, next) {
     try {
-    
       const { username, email, password } = req.body;
       const create = await User.create({
         username,
         email,
         password,
-        profilePicture: req.file  
+        profilePicture: req.file,
       });
       if (create) {
-        res
-          .status(201)
-          .json({
-            message: `user with email ${create.email} has been created`,
-          });
+        res.status(201).json({
+          message: `user with email ${create.email} has been created`,
+        });
       }
     } catch (error) {
       // next(error);
@@ -81,6 +78,18 @@ class UserController {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  static async updateStatus(req, res, next) {
+    try {
+      const { username } = req.user;
+
+      const update = await User.update({ status: 'Official' }, { where: { username } });
+      if (!update) {
+        throw { name: "DATA NOT FOUND" };
+      }
+      res.status(200).json({message: 'status updated'})
+    } catch (error) {}
   }
 }
 

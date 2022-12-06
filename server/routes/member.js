@@ -6,4 +6,5 @@ router.get('/', MemberController.getAllMembers)
 router.get('/:nickName', MemberController.memberProfile)
 
 
+
 module.exports = router

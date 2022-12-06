@@ -11,7 +11,7 @@ function errorHandler(err, req, res, next) {
             break;
         case "DATA NOT FOUND":
             statusCode = 404
-            message = 'Product Not Found'
+            message = 'data Not Found'
             break;
         case "invalid_credentials":
             statusCode = 401

@@ -18,9 +18,7 @@ async function authentication(req, res, next) {
 
     req.user = {
       id: find.id,
-
-      role: find.role,
-
+      username: find.username,
       email: find.email,
     };
 
@@ -30,4 +28,4 @@ async function authentication(req, res, next) {
   }
 }
 
-module.exports = { authentication };
+module.exports =  authentication

@@ -2,6 +2,7 @@ const express = require('express')
 const UserController = require('../controllers/userController')
 const multer = require('multer')
 const router = express()
+const authentication = require('../middlewares/authentication')
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -18,5 +19,7 @@ router.post('/register', upload.single('profilePicture'),  UserController.regist
 router.post ('/login', UserController.login)
 router.post('/googlelogin', UserController.googleLogin)
 
+router.use(authentication)
+router.patch('/status', UserController.updateStatus)
 
 module.exports = router
