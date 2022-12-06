@@ -38,6 +38,13 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notNull: { msg: "type course is required" },
           notEmpty: { msg: "type course is required" },
+          customValidator(value) {
+            if (value !== "free") {
+              if (value !== "premium") {
+                throw new Error("Choose type course free or premium");
+              }
+            }
+          },
         },
       },
       status: {
@@ -48,6 +55,13 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notNull: { msg: "status course is required" },
           notEmpty: { msg: "status course is required" },
+          customValidator(value) {
+            if (value !== "draft") {
+              if (value !== "published") {
+                throw new Error("Choose status course draft or published");
+              }
+            }
+          },
         },
       },
       price: {
@@ -67,6 +81,19 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notNull: { msg: "level course is required" },
           notEmpty: { msg: "level course is required" },
+          customValidator(value) {
+            if (value !== "all-level") {
+              if (value !== "beginner") {
+                if (value !== "intermediate") {
+                  if (value !== "advance") {
+                    throw new Error(
+                      "Choose status course all-level or beginner or intermediate or advance"
+                    );
+                  }
+                }
+              }
+            }
+          },
         },
       },
       description: {
