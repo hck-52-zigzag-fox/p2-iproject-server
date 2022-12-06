@@ -86,8 +86,6 @@ class Course {
       const id = +req.params.id;
       const { name, thumbnail, type, status, price, level, description, MentorId } = req.body;
 
-      console.log(req.body);
-
       if (!MentorId) throw { name: "NotMentorId" };
       const mentor = await ModelMentor.findByPk(+MentorId);
       if (!mentor) throw { name: "NotFoundMentor" };
@@ -126,7 +124,6 @@ class Course {
     try {
       const id = +req.params.id;
       const { status } = req.body;
-      console.log(status);
 
       const course = await ModelCourse.findByPk(id);
       if (!course) throw { name: "NotDataCourse" };

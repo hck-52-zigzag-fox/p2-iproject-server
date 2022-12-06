@@ -2,7 +2,9 @@ const router = require("express").Router();
 
 const { upload } = require("../../helpers/index");
 const Course = require("../../controllers/courses");
+const authentication = require("../../middlewares/authentication");
 
+router.use(authentication);
 router.get("/", Course.getCourses);
 router.post("/", upload.single("thumbnail"), Course.insertCourse);
 router.get("/:id", Course.getCourse);

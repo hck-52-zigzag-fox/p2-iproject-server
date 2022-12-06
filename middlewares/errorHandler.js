@@ -50,6 +50,12 @@ module.exports = {
     } else if (err.name === "NotDataCourse") {
       msg = "course not found";
       code = 404;
+    } else if (err.name === "NoToken") {
+      msg = "no token";
+      code = 401;
+    } else if (err.name === "Unauthorized") {
+      msg = "not authorized, no user login";
+      code = 401;
     } else {
       msg = "internal server error";
       code = 500;
