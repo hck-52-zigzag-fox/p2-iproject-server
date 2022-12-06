@@ -1,5 +1,4 @@
 function errorHandler(err, req, res, next) {
-  console.log(err);
   let name = err.name;
   let code;
   let message;
@@ -10,6 +9,12 @@ function errorHandler(err, req, res, next) {
   ) {
     code = 400;
     message = err.errors[0].message;
+  } else if (name === "Bad_Request") {
+    code = 400;
+    message = "Email/password is required";
+  } else if (name === "Invalid_Credential") {
+    code = 401;
+    message = "Email/password is invalid";
   } else {
     code = 500;
     message = "Internal server error";
