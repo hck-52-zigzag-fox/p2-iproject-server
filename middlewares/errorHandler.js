@@ -38,6 +38,18 @@ module.exports = {
     } else if (err.name === "ConflictEmailMentor") {
       msg = "email already use by other mentors";
       code = 400;
+    } else if (err.name === "ImgToMuchLarge") {
+      msg = "image upload max 5mb";
+      code = 400;
+    } else if (err.name === "NotFoundMentor") {
+      msg = "mentor not found";
+      code = 404;
+    } else if (err.name === "NotMentorId") {
+      msg = "mentor is required";
+      code = 400;
+    } else if (err.name === "NotDataCourse") {
+      msg = "course not found";
+      code = 404;
     } else {
       msg = "internal server error";
       code = 500;
