@@ -38,7 +38,10 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty: { msg: "Role is required" },
           notNull: { msg: "Role is required" },
-          isIn: [["Admin", "Customer"]],
+          isIn: {
+            args: [["Admin", "Customer"]],
+            msg: "Role must be Admin/Customer",
+          },
         },
       },
     },
@@ -49,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   User.beforeCreate((user) => {
-    user.password = hashPassword(user.password)
-  })
+    user.password = hashPassword(user.password);
+  });
   return User;
 };

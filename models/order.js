@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Order.belongsTo(models.Item)
-      Order.belongsTo(models.User)
+      Order.belongsTo(models.Item);
+      Order.belongsTo(models.User);
     }
   }
   Order.init(
@@ -37,7 +37,10 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty: { msg: "status is required" },
           notNull: { msg: "status is required" },
-          isIn: [["Paid", "Unpaid"]],
+          isIn: {
+            args: [["Paid", "Unpaid"]],
+            msg: "Status must be Paid/Unpaid",
+          },
         },
       },
       additionalPrice: {
