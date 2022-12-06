@@ -59,7 +59,9 @@ class OrderController {
         { where: { id } }
       );
 
-      res.status(200).json({ message: "Success update order" });
+      res
+        .status(200)
+        .json({ message: `Success update order with id: ${foundOrder.id}` });
     } catch (err) {
       next(err);
     }
@@ -75,9 +77,31 @@ class OrderController {
         throw { name: "NotFound", model: "Order", id };
       }
 
-      await Order.update({ status : "Paid" }, { where: { id } });
+      await Order.update({ status: "Paid" }, { where: { id } });
 
-      res.status(200).json({ message: "Success update status" });
+      res
+        .status(200)
+        .json({ message: `Success update status with id: ${foundOrder.id}` });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async deleteOrder(req, res, next) {
+    try {
+      const id = +req.params.id;
+
+      const foundOrder = await Order.findByPk(id);
+
+      if (!foundOrder) {
+        throw { name: "NotFound", model: "Order", id };
+      }
+
+      await Order.destroy({ where: { id } });
+
+      res
+        .status(200)
+        .json({ message: `Success delete order with id: ${foundOrder.id}` });
     } catch (err) {
       next(err);
     }

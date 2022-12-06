@@ -14,4 +14,5 @@ router.get("/orders", OrderController.fetchOrder);
 router.post("/orders", OrderController.addOrder);
 router.put("/orders/:id", OrderController.editOrder);
 router.patch("/orders/:id", isAdmin, OrderController.changeStatusToPaid)
+router.delete("/orders/:id", isAdmin, OrderController.deleteOrder)
 module.exports = router;
