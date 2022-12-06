@@ -19,24 +19,25 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-          notEmpty: { msg: "UserId is required" },
           notNull: { msg: "UserId is required" },
+          notEmpty: { msg: "UserId is required" },
         },
       },
       ItemId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-          notEmpty: { msg: "ItemId is required" },
           notNull: { msg: "ItemId is required" },
+          notEmpty: { msg: "ItemId is required" },
+          isInt: { msg: "ItemId must be an number" },
         },
       },
       status: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: { msg: "status is required" },
           notNull: { msg: "status is required" },
+          notEmpty: { msg: "status is required" },
           isIn: {
             args: [["Paid", "Unpaid"]],
             msg: "Status must be Paid/Unpaid",
@@ -45,6 +46,13 @@ module.exports = (sequelize, DataTypes) => {
       },
       additionalPrice: {
         type: DataTypes.INTEGER,
+        validate: {
+          isInt: { msg: "ItemId must be an number" },
+          min: {
+            args: [0],
+            msg: "Price must be more than 0"
+          }
+        }
       },
       additionalDetail: {
         type: DataTypes.STRING,

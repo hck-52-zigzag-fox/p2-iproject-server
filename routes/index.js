@@ -11,5 +11,6 @@ router.use(isLogin)
 router.get("/items", ItemController.fetchItems);
 router.get("/orders", OrderController.fetchOrder);
 router.post("/orders", OrderController.addOrder);
+router.put("/orders/:id", OrderController.editOrder);
 
 module.exports = router;
