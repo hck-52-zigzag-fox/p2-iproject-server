@@ -1,0 +1,8 @@
+{
+  "name": "p2-iproject-server",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/smfriady/p2-iproject-server.git",
+  "author": "Sony MelliFriady <zoenasun@gmail.com>",
+  "license": "MIT"
+}
