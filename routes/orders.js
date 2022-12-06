@@ -9,4 +9,5 @@ router.use(authentication);
 router.get("/", OrderController.getOrderById);
 router.post("/:id", OrderController.addOrderById);
 router.delete("/:id", authorization, OrderController.deleteById);
+router.patch("/:id", authorization, OrderController.patchById);
 module.exports = router;

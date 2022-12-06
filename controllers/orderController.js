@@ -52,13 +52,32 @@ class OrderController {
           id,
         },
       });
-      res
-        .status(201)
-        .json({
-          message: `Order with product ${req.order.Product.name} has been delete`,
-        });
+      res.status(201).json({
+        message: `Order with product ${req.order.Product.name} has been delete`,
+      });
     } catch (error) {
       console.log(error);
+      next(error);
+    }
+  }
+  static async patchById(req, res, next) {
+    try {
+      const id = +req.params.id;
+      const order = await Order.findByPk(id);
+
+      if (!order) {
+        throw { name: "Order Not Found" };
+      }
+      if (order.status == "Paid") {
+        throw { name: "change error" };
+      }
+
+      await Order.update({ status: "Paid" }, { where: { id } });
+
+      res.status(200).json({
+        message: `Success to update status ${req.order.Product.name}`,
+      });
+    } catch (error) {
       next(error);
     }
   }

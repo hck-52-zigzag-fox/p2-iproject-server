@@ -10,6 +10,10 @@ function errorHandler(err, req, res, next) {
       statusCode = 400;
       message = "Password is required";
       break;
+    case "change error":
+      statusCode = 400;
+      message = "Change Status Error";
+      break;
     case "Unauthorized":
       statusCode = 401;
       message = "Please login first";
