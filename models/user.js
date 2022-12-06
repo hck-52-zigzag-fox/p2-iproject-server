@@ -44,10 +44,6 @@ module.exports = (sequelize, DataTypes) => {
           notNull: { msg: "password cannot be empty" },
         },
       },
-      profilePicture: {
-        type: DataTypes.STRING,
-        defaultValue: 'https://static.vecteezy.com/system/resources/previews/001/840/618/non_2x/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-free-vector.jpg'
-      },
       status: {
         type: DataTypes.STRING,
         allowNull: false,

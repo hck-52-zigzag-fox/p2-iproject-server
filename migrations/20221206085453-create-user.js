@@ -21,10 +21,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      profilePicture: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
       status: {
         type: Sequelize.STRING,
         allowNull: false

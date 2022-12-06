@@ -20,10 +20,6 @@ module.exports = {
       AnimeId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {
-          model: "Animes",
-          key: "id",
-        },
       },
       reccomended: {
         type: Sequelize.BOOLEAN,
