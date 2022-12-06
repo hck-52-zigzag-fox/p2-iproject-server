@@ -14,10 +14,22 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Movie.init({
-    title: DataTypes.STRING,
-    poster_path: DataTypes.STRING,
-    price: DataTypes.INTEGER,
-    id_tmdb: DataTypes.INTEGER
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    poster_path: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    id_tmdb: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Movie',
