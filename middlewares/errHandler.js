@@ -30,6 +30,10 @@ async function errHandler(err, req, res, next) {
     res.status(400).json({
       message: "Status required",
     });
+  } else if (err.name == "FileFormatNotSupported") {
+    res.status(400).json({
+      message: "File format not supported",
+    });
   } else if (err.name == "AlreadyFavorite") {
     res.status(400).json({
       message: "Already Favorite",
