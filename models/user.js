@@ -1,8 +1,6 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-const {encrypt} = require('../helpers/bcrypt');
+"use strict";
+const { Model } = require("sequelize");
+const { encrypt } = require("../helpers/bcrypt");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -12,21 +10,64 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Liked)
+      User.hasMany(models.Liked);
     }
   }
-  User.init({
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    profilePicture: DataTypes.STRING,
-    status: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'User',
-  });
+  User.init(
+    {
+      username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: { msg: "Username cannot be empty" },
+          notNull: { msg: "Username cannot be empty" },
+        },
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: { msg: "Email already used" },
+        validate: {
+          notEmpty: { msg: "Email cannot be empty" },
+          notNull: { msg: "Email cannot be empty" },
+        },
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: {
+            args: [8],
+            msg: "password must have minimum 8 characters",
+          },
+          notEmpty: { msg: "password cannot be empty" },
+          notNull: { msg: "password cannot be empty" },
+        },
+      },
+      profilePicture: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: { msg: "Profile picture cannot be empty" },
+          notNull: { msg: "Profile picture cannot be empty" },
+        },
+      },
+      status: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: { msg: "Status cannot be empty" },
+          notNull: { msg: "Status cannot be empty" },
+        },
+      },
+    },
+    {
+      sequelize,
+      modelName: "User",
+    }
+  );
   User.beforeCreate((user, options) => {
-    user.password = encrypt(user.password)
-  })
+    user.password = encrypt(user.password);
+  });
   return User;
 };
