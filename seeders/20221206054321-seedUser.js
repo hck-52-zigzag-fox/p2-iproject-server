@@ -22,7 +22,7 @@ module.exports = {
           role: "Customer",
         },
         {
-          email: "nadya2@gmail.com",
+          email: "admin@gmail.com",
           password: "12345",
           role: "Admin",
         },
