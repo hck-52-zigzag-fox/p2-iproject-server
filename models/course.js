@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Course.hasMany(models.MyCourse);
       Course.belongsTo(models.Mentor);
+      Course.hasMany(models.Chapter);
     }
   }
   Course.init(
