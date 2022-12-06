@@ -12,6 +12,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      imgUrl: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       gender: {
         type: Sequelize.STRING,
         allowNull: false,
