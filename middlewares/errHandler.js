@@ -19,7 +19,8 @@ function errHandler(err, req, res, next) {
       statusCode = 400;
       message = `Please Login First`;
       break;
-      case "Not_found":
+    case "Not_found":
+    case "error":
       statusCode = 404;
       message = `Product Not Found`;
       break;
