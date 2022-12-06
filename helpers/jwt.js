@@ -1,11 +1,7 @@
-const bcrypt = require("bcryptjs");
-function hashPassword(password) {
-  const salt = bcrypt.genSaltSync(10);
-  const hash = bcrypt.hashSync(password, salt);
-  return hash;
-}
-function compareHash(password, hash) {
-  return bcrypt.compareSync(password, hash);
-}
+const jwt = require("jsonwebtoken");
+// const SECRET = "rahasia";
 
-module.exports = { hashPassword, compareHash };
+const createToken = (payload) => jwt.sign(payload, process.env.SECRET);
+
+const verifyToken = (token) => jwt.verify(token, process.env.SECRET);
+module.exports = { createToken, verifyToken };
