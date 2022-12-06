@@ -42,6 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       profilePicture: {
         type: DataTypes.STRING,
+        defaultValue:"https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
       },
       status: {
         type: DataTypes.STRING,
@@ -54,8 +55,6 @@ module.exports = (sequelize, DataTypes) => {
   );
   User.beforeCreate((user, option) => {
     user.password = hashPassword(user.password);
-    user.profilePicture =
-      "https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg";
     user.status = "Fans";
   });
   return User;
