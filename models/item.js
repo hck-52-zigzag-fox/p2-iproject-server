@@ -37,8 +37,16 @@ module.exports = (sequelize, DataTypes) => {
           notNull: { msg: "Price is required" },
           min: {
             args: [0],
-            msg: "Price must be more than 0"
-          }
+            msg: "Price must be more than 0",
+          },
+        },
+      },
+      imageUrl: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: { msg: "Image Url is required" },
+          notNull: { msg: "Image Url is required" },
         },
       },
     },

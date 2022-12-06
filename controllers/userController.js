@@ -36,7 +36,7 @@ class UserController {
 
       res
         .status(200)
-        .json({ access_token, email: user.email, role: user.role });
+        .json({ access_token, email: user.email, role: user.role, id: user.id });
     } catch (err) {
       next(err);
     }
