@@ -1,3 +1,5 @@
+const {Chat} = require("../models/index")
+
 class ControllerChat {
     static async uploadChat(req,res,next){
 

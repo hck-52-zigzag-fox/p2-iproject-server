@@ -1,3 +1,5 @@
+const { Topic } = require("../models/index")
+
 class ControllerTopic {
     static async showTopic(req,res,next){
 
@@ -8,7 +10,7 @@ class ControllerTopic {
     }
 
     static async createTopic(req,res,next){
-        
+
     }
 }
 
