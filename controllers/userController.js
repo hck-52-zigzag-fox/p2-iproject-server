@@ -2,6 +2,7 @@ const { compareHash } = require("../helpers/bcrypt");
 const { createToken } = require("../helpers/jwt");
 const { User } = require("../models");
 class UserController {
+  // comment buat test
   static async register(req, res, next) {
     try {
       const { email, password, address } = req.body;
