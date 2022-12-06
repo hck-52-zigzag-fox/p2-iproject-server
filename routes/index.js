@@ -4,10 +4,10 @@ const itemRouter = require("./itemRouter");
 const orderRouter = require("./orderRouter");
 const router = require("express").Router();
 
-router.post("/customers", userRouter);
+router.use("/customers", userRouter);
 
 router.use(isLogin)
-router.get("/items", itemRouter);
-router.get("/orders", orderRouter);
+router.use("/items", itemRouter);
+router.use("/orders", orderRouter);
 
 module.exports = router;
