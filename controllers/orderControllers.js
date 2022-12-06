@@ -64,6 +64,24 @@ class OrderController {
       next(err);
     }
   }
+
+  static async changeStatusToPaid(req, res, next) {
+    try {
+      const id = +req.params.id;
+
+      const foundOrder = await Order.findByPk(id);
+
+      if (!foundOrder) {
+        throw { name: "NotFound", model: "Order", id };
+      }
+
+      await Order.update({ status : "Paid" }, { where: { id } });
+
+      res.status(200).json({ message: "Success update status" });
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 module.exports = OrderController;

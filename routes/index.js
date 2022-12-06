@@ -12,5 +12,6 @@ router.get("/items", ItemController.fetchItems);
 router.get("/orders", OrderController.fetchOrder);
 router.post("/orders", OrderController.addOrder);
 router.put("/orders/:id", OrderController.editOrder);
+router.patch("orders/:id", OrderController.changeStatusToPaid)
 
 module.exports = router;
