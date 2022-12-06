@@ -9,16 +9,24 @@ function errHandler(err, req, res, next) {
       break;
     case "ErrorEmptyInput":
       statusCode = 400;
-      message = `Please Fiil The Form`
-      break
-      case "INVALID_CREDENTIALS":
+      message = `Please Fiil The Form`;
+      break;
+    case "INVALID_CREDENTIALS":
       statusCode = 400;
-      message = `Invalid email/password`
-      break
+      message = `Invalid email/password`;
+      break;
+    case "UNAUTHORIZED":
+      statusCode = 400;
+      message = `Please Login First`;
+      break;
+      case "Not_found":
+      statusCode = 404;
+      message = `Product Not Found`;
+      break;
     default:
       break;
   }
-  res.status(statusCode).json({message})
+  res.status(statusCode).json({ message });
 }
 
-module.exports = errHandler
+module.exports = errHandler;
