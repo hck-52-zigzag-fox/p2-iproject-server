@@ -46,11 +46,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       profilePicture: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notEmpty: { msg: "Profile picture cannot be empty" },
-          notNull: { msg: "Profile picture cannot be empty" },
-        },
+        defaultValue: 'https://static.vecteezy.com/system/resources/previews/001/840/618/non_2x/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-free-vector.jpg'
       },
       status: {
         type: DataTypes.STRING,
@@ -67,6 +63,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   User.beforeCreate((user, options) => {
+    user.status = 'Free'
     user.password = encrypt(user.password);
   });
   return User;
