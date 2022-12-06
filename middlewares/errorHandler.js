@@ -23,6 +23,15 @@ module.exports = {
     } else if (err.name === "ConflictCreateUser") {
       msg = "username or email already registered";
       code = 400;
+    } else if (err.name === "NoEmail") {
+      msg = "email is required";
+      code = 400;
+    } else if (err.name === "NoPassword") {
+      msg = "password is required";
+      code = 400;
+    } else if (err.name === "ConflictLoginUser") {
+      msg = "wrong email or password";
+      code = 401;
     } else {
       msg = "internal server error";
       code = 500;
