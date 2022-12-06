@@ -1,18 +1,13 @@
-const ItemController = require("../controllers/itemController");
-const OrderController = require("../controllers/orderControllers");
-const UserController = require("../controllers/userController");
 const { isLogin } = require("../middlewares/authentication");
-const { isAdmin } = require("../middlewares/authorization");
-
+const userRouter = require("./customerRouter");
+const itemRouter = require("./itemRouter");
+const orderRouter = require("./orderRouter");
 const router = require("express").Router();
 
-router.post("/customers/login", UserController.loginCustomer);
+router.post("/customers", userRouter);
 
 router.use(isLogin)
-router.get("/items", ItemController.fetchItems);
-router.get("/orders", OrderController.fetchOrder);
-router.post("/orders", OrderController.addOrder);
-router.put("/orders/:id", OrderController.editOrder);
-router.patch("/orders/:id", isAdmin, OrderController.changeStatusToPaid)
-router.delete("/orders/:id", isAdmin, OrderController.deleteOrder)
+router.get("/items", itemRouter);
+router.get("/orders", orderRouter);
+
 module.exports = router;
