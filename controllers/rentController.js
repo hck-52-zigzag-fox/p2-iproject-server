@@ -1,32 +1,40 @@
-// const midtransClient = require("midtrans-client");
+const midtransClient = require("midtrans-client");
+const { User } = require("../models");
 
-// class RentController {
-//   static async handleMidtrans(req, res, next) {
-//     try {
-//       let snap = new midtransClient.Snap({
-//         isProduction: false,
-//         serverKey: "SB-Mid-server-UVAFvVd--FOCIpD6uz_ZfLuF",
-//       });
+class RentController {
+  static async handleMidtrans(req, res, next) {
+    try {
+      //   const price = +req.params.price;
+      const id = +req.user.id;
 
-//       let parameter = {
-//         transaction_details: {
-//           order_id: `TRX ${new Date().getTime()}`,
-//           gross_amount: 10000,
-//         },
-//         credit_card: {
-//           secure: true,
-//         },
-//         customer_details: {
-//           first_name: "budi",
-//           last_name: "pratama",
-//           email: "budi.pra@example.com",
-//           phone: "08111222333",
-//         },
-//       };
-//     } catch (err) {
-//       next(err);
-//     }
-//   }
-// }
+      const foundUser = await User.findByPk(id);
 
-// module.exports = RentController;
+      let snap = new midtransClient.Snap({
+        isProduction: false,
+        serverKey: "SB-Mid-server-UVAFvVd--FOCIpD6uz_ZfLuF",
+      });
+
+      let parameter = {
+        transaction_details: {
+          order_id: `TRX${new Date().getTime()}`,
+          gross_amount: 1000000,
+        },
+        credit_card: {
+          secure: true,
+        },
+        customer_details: {
+          email: foundUser.email,
+          phone: foundUser.phoneNumber,
+          address: foundUser.address,
+        },
+      };
+
+      const midtransToken = await snap.createTransaction(parameter);
+      res.status(201).json(midtransToken);
+    } catch (err) {
+      next(err);
+    }
+  }
+}
+
+module.exports = RentController;

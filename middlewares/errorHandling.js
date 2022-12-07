@@ -16,6 +16,9 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "INVALID_CREDENTIALS") {
     status = 401;
     message = `invalid email or password`;
+  } else if (err.name === "UNAUTHORIZED") {
+    status = 401;
+    message = `Please login first!`;
   } else if (err.name === "NOT_FOUND") {
     status = 404;
     message = `Data not found`;
