@@ -1,0 +1,82 @@
+[
+    {
+        "name": "Woyo",
+        "age": 35,
+        "gender": "Laki-Laki",
+        "experience": 5,
+        "education": "SMA",
+        "imageUrl": "https://drive.google.com/file/d/1TbmLDrIytULUBj6yYQeMDN4yAzky11hW/view?usp=share_link",
+        "status": "Hiring",
+        "CategoryId": 3
+    },
+    {
+        "name": "Wani",
+        "age": 35,
+        "gender": "Perempuan",
+        "experience": 4,
+        "education": "SMA",
+        "imageUrl": "https://drive.google.com/file/d/1LsuSTJPPpYXCREVXTa7HpOKzmDL2XHoY/view?usp=share_link",
+        "status": "Hiring",
+        "CategoryId": 1
+    },
+    {
+        "name": "Komar",
+        "age": 40,
+        "gender": "Laki-Laki",
+        "experience": 6,
+        "education": "SMA",
+        "imageUrl": "https://drive.google.com/file/d/1TbmLDrIytULUBj6yYQeMDN4yAzky11hW/view?usp=share_link",
+        "status": "Hiring",
+        "CategoryId": 2
+    },
+    {
+        "name": "Wisko",
+        "age": 35,
+        "gender": "Laki-Laki",
+        "experience": 5,
+        "education": "SMA",
+        "imageUrl": "https://drive.google.com/file/d/1TbmLDrIytULUBj6yYQeMDN4yAzky11hW/view?usp=share_link",
+        "status": "Hiring",
+        "CategoryId": 3
+    },
+    {
+        "name": "Jen",
+        "age": 35,
+        "gender": "Perempuan",
+        "experience": 4,
+        "education": "SMA",
+        "imageUrl": "https://drive.google.com/file/d/1LsuSTJPPpYXCREVXTa7HpOKzmDL2XHoY/view?usp=share_link",
+        "status": "Hiring",
+        "CategoryId": 1
+    },
+    {
+        "name": "Yordi",
+        "age": 40,
+        "gender": "Laki-Laki",
+        "experience": 6,
+        "education": "SMA",
+        "imageUrl": "https://drive.google.com/file/d/1TbmLDrIytULUBj6yYQeMDN4yAzky11hW/view?usp=share_link",
+        "status": "Hiring",
+        "CategoryId": 2
+    },
+    {
+        "name": "Bun",
+        "age": 35,
+        "gender": "Perempuan",
+        "experience": 4,
+        "education": "SMA",
+        "imageUrl": "https://drive.google.com/file/d/1LsuSTJPPpYXCREVXTa7HpOKzmDL2XHoY/view?usp=share_link",
+        "status": "Hiring",
+        "CategoryId": 1
+    },
+    {
+        "name": "Jal",
+        "age": 40,
+        "gender": "Laki-Laki",
+        "experience": 6,
+        "education": "SMA",
+        "imageUrl": "https://drive.google.com/file/d/1TbmLDrIytULUBj6yYQeMDN4yAzky11hW/view?usp=share_link",
+        "status": "Hiring",
+        "CategoryId": 2
+    }
+]
