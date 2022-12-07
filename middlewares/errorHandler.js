@@ -31,7 +31,7 @@ function errorHandler(err, req, res, next) {
             message = `you have to login first`
             break;
 
-        case "invalid email or password":
+        case "Invalid email/password":
             status = 400
             message = err.name
             break;
