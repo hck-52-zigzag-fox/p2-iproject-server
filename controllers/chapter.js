@@ -1,7 +1,7 @@
 const { Course, Chapter: ModelChapter } = require("../models");
 
 class Chapter {
-  static async getChapters(req, res, next) {
+  static async getChapters(_req, res, next) {
     try {
       const options = {
         attributes: {
@@ -65,10 +65,13 @@ class Chapter {
       const course = await Course.findByPk(CourseId);
       if (!course) throw { name: "NotDataCourse" };
 
-      await ModelChapter.update({ name, CourseId: course.id }, { where: { id } });
+      const chapter = await ModelChapter.findByPk(id);
+      if (!chapter) throw { name: "NoData" };
+
+      await ModelChapter.update({ name, CourseId: course.id }, { where: { id: chapter.id } });
 
       res.status(200).json({
-        id: course.id,
+        id: chapter.id,
         message: "chapter updated successfully",
       });
     } catch (err) {
