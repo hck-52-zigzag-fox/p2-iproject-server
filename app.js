@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const { User, Food, foodLog } = require('./models')
+const { User, Food, foodLog, popularFood } = require('./models')
 const axios = require('axios')
 
 const authentication = require('./middlewares/authentication')
@@ -114,6 +114,17 @@ app.get('/food', async (req, res, next) => {
 
 
     res.status(200).json(result)
+
+  } catch (error) {
+    next(error)
+  }
+})
+
+app.get('/popularfood', async (req, res, next) => {
+  try {
+    const food = await popularFood.findAll()
+
+    res.status(200).json(food)
 
   } catch (error) {
     next(error)
