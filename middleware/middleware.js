@@ -27,6 +27,10 @@ function errorHandler(err, req, res, next) {
       status = 401;
       message = "Please sign-in first";
       break;
+    case "NOT_FOUND":
+      status = 404;
+      message = "Employee not found!";
+      break;
     default:
       break;
   }

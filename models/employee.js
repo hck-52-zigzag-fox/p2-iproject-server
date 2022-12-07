@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Employee.belongsTo(models.Category)
     }
   }
   Employee.init({
@@ -21,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     education: DataTypes.STRING,
     imageUrl: DataTypes.STRING,
     status: DataTypes.STRING,
-    CategoryId: DataTypes.INTEGER
+    CategoryId: DataTypes.INTEGER,
+    UserId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Employee',
