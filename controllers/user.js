@@ -38,19 +38,54 @@ class ControllerUser {
       });
       if (!user) {
         throw {
-          name: "InvalidCredentials",
+          name: "Unauthorized",
         };
       }
       let validPass = comparePass(password, user.password);
       if (!validPass) {
         throw {
-          name: "InvalidCredentials",
+          name: "Unauthorized",
         };
       }
       let access_token = signToken({
         id:user.id,
       })
       res.status(200).json({access_token})
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static googleLogin(req, res, next) {
+    try { 
+      const { google_token } = req.headers;
+      const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+      async function verify() {
+        const ticket = await client.verifyIdToken({
+          idToken: google_token,
+          audience: process.env.GOOGLE_CLIENT_ID,
+        });
+        const payload = ticket.getPayload();
+
+        const [user] = await User.findOrCreate({
+          where: {
+            email: payload.email,
+          },
+          defaults: {
+            email: payload.email,
+            password: "user123",
+            role: "user",
+          },
+        }); 
+        let accessToken = jwtSign({ email: user.email });
+        req.headers = { access_token: accessToken };
+        res.status(200).json({
+          access_token: accessToken,
+          email: user.email,
+          role: user.role,
+        });
+      }
+      verify().catch(console.error);
     } catch (error) {
       next(error);
     }
