@@ -1,5 +1,5 @@
 async function errHandler(err, req, res, next) {
-  console.log(err.code, "<<<");
+  console.log(err, "<<<");
   if (err.name == "SequelizeValidationError" || err.name == "BadRequest") {
     let errors = [];
     err.errors.forEach((el) => {

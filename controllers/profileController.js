@@ -3,23 +3,46 @@ const { signToken, upload } = require("../helpers");
 const { Profile } = require("../models");
 
 class ProfileController {
-  static async createProfile(req, res, next) {
+  static async editProfile(req, res, next) {
     try {
+      let profilePict = "#";
+      profilePict = req.file.path;
+      console.log(profilePict, "<<<");
       const { id } = req.user;
-      const { name, gender, about, job, company, dateOfBirth } = req.body;
+      let { name, gender, about, job, company, dateOfBirth } = req.body;
+      // change dateOfBirth to date format
+      console.log(dateOfBirth, "<<<");
+      dateOfBirth = new Date(dateOfBirth);
+      console.log(dateOfBirth, "<<<");
       //   console.log(req.file, "<<<");
-      //   console.log(dateOfBirth, "<<< iniî");
-      const profile = await Profile.create({
-        name,
-        profilePict: req.file.path,
-        dateOfBirth,
-        gender,
-        about,
-        job,
-        company,
-        UserId: id,
-      });
-      res.status(201).json(profile);
+      // console.log(
+      //   name,
+      //   gender,
+      //   about,
+      //   job,
+      //   company,
+      //   dateOfBirth,
+      //   id
+      //   // "<<< iniî"
+      // );
+      const dataFind = await Profile.update(
+        {
+          name,
+          profilePict: profilePict,
+          dateOfBirth,
+          gender,
+          about,
+          job,
+          company,
+        },
+        {
+          where: {
+            UserId: id,
+          },
+          returning: true,
+        }
+      );
+      res.status(201).json(dataFind);
     } catch (err) {
       next(err);
     }

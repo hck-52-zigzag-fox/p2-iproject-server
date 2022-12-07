@@ -1,10 +1,9 @@
 const router = require("express").Router();
 const { ProfileController } = require("../controllers/");
 const { authentication, upload } = require("../middlewares");
-router.post(
-  "/create",
+router.put(
+  "/edit",
   upload.single("profilePict"),
-  ProfileController.createProfile
+  ProfileController.editProfile
 );
-
 module.exports = router;
