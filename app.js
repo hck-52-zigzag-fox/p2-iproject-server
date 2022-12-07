@@ -1,8 +1,11 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const { User } = require('./models')
+const { User, Food, foodLog } = require('./models')
 const axios = require('axios')
+
+const authentication = require('./middlewares/authentication')
+const errorHandler = require('./middlewares/errorHandler')
 
 const cors = require('cors')
 app.use(cors())
@@ -90,15 +93,53 @@ app.get('/food', async (req, res, next) => {
       }
     })
 
-    // kalo makanan di atas treshold tertentu, kasih status merah
-    // ada status merah, hijau, kuning
-
-
     if (data.items.length == 0) {
-      throw {name: 'notFound'}
+      throw { name: 'notFound' }
     }
 
-    res.status(200).json(data.items[0])
+    const result = await Food.create({
+      name: data.items[0].name,
+      sugarG: data.items[0].sugar_g,
+      fiberG: data.items[0].fiber_g,
+      sodiumMg: data.items[0].sodium_mg,
+      potassiumMg: data.items[0].potassium_mg,
+      saturatedFatG: data.items[0].fat_saturated_g,
+      totalFatG: data.items[0].fat_total_g,
+      calories: data.items[0].calories,
+      cholesterolMg: data.items[0].cholesterol_mg,
+      proteinG: data.items[0].protein_g,
+      carbsTotalG: data.items[0].carbohydrates_total_g
+    })
+
+
+    res.status(200).json(result)
+
+  } catch (error) {
+    next(error)
+  }
+})
+
+app.use(authentication)
+
+app.post('/foodlogs/:id', async (req, res, next) => {
+  try {
+
+    const UserId = req.user.id
+    const FoodId = req.params.id
+
+    const food = await Food.findByPk(FoodId)
+    if (!food) {
+      throw { name: 'notFound' }
+    }
+
+    await foodLog.create({
+      UserId, FoodId
+    })
+
+    res.status(201).json({
+      message: `${food.name} has been added to your food log`
+    })
+
 
   } catch (error) {
     next(error)
@@ -107,8 +148,6 @@ app.get('/food', async (req, res, next) => {
 
 
 
-
-const errorHandler = require('./middlewares/errorHandler')
 app.use(errorHandler)
 
 app.listen(port, () => {
