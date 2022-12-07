@@ -3,7 +3,6 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Chat extends Model {
     static associate(models) {
-      Chat.belongsToMany(models.Users, { foreignKey: "ReceiverId" });
     }
   }
   Chat.init(

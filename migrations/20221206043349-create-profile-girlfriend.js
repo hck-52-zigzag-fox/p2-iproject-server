@@ -28,6 +28,9 @@ module.exports = {
       rating: {
         type: Sequelize.INTEGER,
       },
+      price:{
+        type:Sequelize.INTEGER
+      },
       booked: {
         type: Sequelize.BOOLEAN,
       },

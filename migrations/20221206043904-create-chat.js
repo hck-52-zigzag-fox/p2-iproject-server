@@ -14,21 +14,9 @@ module.exports = {
       },
       SenderId: {
         type: Sequelize.INTEGER,
-        references : {
-          model:"Users",
-          key:'id'
-        },
-        onDelete:'cascade',
-        onUpdate:'cascade',
       },
       ReceiverId: {
         type: Sequelize.INTEGER,
-        references : {
-          model:"Users",
-          key:'id'
-        },
-        onDelete:'cascade',
-        onUpdate:'cascade',
       },
       createdAt: {
         allowNull: false,

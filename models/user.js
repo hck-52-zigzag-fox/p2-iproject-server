@@ -4,8 +4,7 @@ const { hashPass } = require("../helpers/bcrypt");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      User.belongsToMany(models.Chat);
-      User.hasOne(models.ProfileGirlFriend, { foreignKey: "UserId" });
+      User.hasOne(models.ProfileGirlfriend, { foreignKey: "UserId" });
       User.hasMany(models.CustomerOrder);
     }
   }
