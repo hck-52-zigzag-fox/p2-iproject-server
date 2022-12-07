@@ -169,6 +169,32 @@ app.get('/foodlogs', async (req, res, next) => {
   }
 })
 
+app.delete('/foodlogs/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params
+
+    const log = await foodLog.findOne({
+      where: { id },
+      include: Food
+    })
+
+    if (!log) {
+      throw { name: 'notFound' }
+    }
+
+    await foodLog.destroy({
+      where: { id }
+    })
+
+    res.status(200).json({
+      message: `${log.Food.name} has been deleted from your food log`
+    })
+
+  } catch (error) {
+    next(error)
+  }
+})
+
 
 
 app.use(errorHandler)
