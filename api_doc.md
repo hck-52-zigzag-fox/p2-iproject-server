@@ -6,6 +6,7 @@ List of available endpoints:
 
 Public:
 - `POST /users/register`
+- `POST /users/login`
 
 &nbsp;
 
@@ -44,6 +45,46 @@ OR
 OR
 {
   "message": ["Email already used"]
+}
+```
+
+&nbsp;
+
+## 2. POST /users/login
+
+Request:
+
+-body:
+
+```json
+{
+    "email": "string",
+    "password": "string"
+}
+```
+
+_Response (200 - OK)_
+
+```json
+{
+    "access_token": "string",
+    "email": "string"
+}
+```
+
+_Response (400 - Bad Request)_
+
+```json
+{
+  "message": "Both Email and Password is required"
+}
+```
+
+_Response (401 - Unauthorized)_
+
+```json
+{
+  "message": "Invalid Email or Password"
 }
 ```
 
