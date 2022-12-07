@@ -8,6 +8,8 @@ Public:
 - `POST /users/register`
 - `POST /users/login`
 - `GET /games`
+- `GET /games/steam/:steamAppID`
+- `GET /games/cheapshark/:gameID`
 
 &nbsp;
 
@@ -175,6 +177,125 @@ _Response (200 - OK)_
 ]
 ```
 
+&nbsp;
+
+## 4. GET /games/steam/:steamAppID
+
+Request:
+
+-params:
+
+```json
+{
+    "steamAppID": "integer"
+}
+```
+
+_Response (200 - OK)_
+
+```json
+{
+    "imgUrl": "https://cdn.akamai.steamstatic.com/steam/apps/35140/header.jpg?t=1634156906",
+    "title": "Batman: Arkham Asylum Game of the Year Edition",
+    "developer": {
+        "link": "https://store.steampowered.com/search/?developer=Rocksteady%20Studios&snr=1_5_9__400",
+        "name": "Rocksteady Studios"
+    },
+    "publisher": {
+        "link": "https://store.steampowered.com/publisher/WBGames?snr=1_5_9__400",
+        "name": "Warner Bros. Interactive Entertainment"
+    },
+    "released": "26 Mar, 2010",
+    "description": "Experience what it’s like to be Batman and face off against Gotham's greatest villians. Explore every inch of Arkham Asylum and roam freely on the infamous island.",
+    "tags": [
+        {
+            "url": "https://store.steampowered.com/tags/en/Action/?snr=1_5_9__409",
+            "name": "Action"
+        },
+        {
+            "url": "https://store.steampowered.com/tags/en/Stealth/?snr=1_5_9__409",
+            "name": "Stealth"
+        },
+        {
+            "url": "https://store.steampowered.com/tags/en/Third%20Person/?snr=1_5_9__409",
+            "name": "Third Person"
+        },
+        ...
+    ],
+    "allReviews": {
+        "summary": "Overwhelmingly Positive"
+    },
+    "price": "19,99€",
+    "DLCs": []
+}
+```
+
+&nbsp;
+
+## 5. GET /games/cheapshark/:gameID
+
+Request:
+
+-params:
+
+```json
+{
+    "gameID": "integer"
+}
+```
+
+_Response (200 - OK)_
+
+```json
+{
+    "info": {
+        "title": "Batman: Arkham Asylum Game of the Year Edition",
+        "steamAppID": "35140",
+        "thumb": "https://cdn.cloudflare.steamstatic.com/steam/apps/35140/capsule_sm_120.jpg?t=1634156906"
+    },
+    "cheapestPriceEver": {
+        "price": "3.80",
+        "date": 1567154111
+    },
+    "deals": [
+        {
+            "storeID": "32",
+            "dealID": "bDyGRBd6zYgwvMrueW9m1DFFdCKLAmNcDqgJUwdYeeQ%3D",
+            "price": "4.16",
+            "retailPrice": "19.99",
+            "savings": "79.189595"
+        },
+        {
+            "storeID": "23",
+            "dealID": "LNCZ5EicmEMiwyfYVw%2FNdGPos9V7MzoPId2UuwaBqvA%3D",
+            "price": "14.95",
+            "retailPrice": "19.99",
+            "savings": "25.212606"
+        },
+        {
+            "storeID": "1",
+            "dealID": "HR5V6hEl39sGwYodeqwwWuo8dKtKukteV0W9we9pI7I%3D",
+            "price": "19.99",
+            "retailPrice": "19.99",
+            "savings": "0.000000"
+        },
+        ...
+    ]
+}
+```
+
+&nbsp;
+
+## Global Error
+
+_Response (401 - Unauthorized)_
+
+```json
+{
+    "message": "Invalid API key. Go to https://docs.rapidapi.com/docs/keys for more info."
+}
+```
+
 _Response (403 - Forbidden)_
 
 ```json
@@ -182,10 +303,6 @@ _Response (403 - Forbidden)_
     "message": "You are not subscribed to this API."
 }
 ```
-
-&nbsp;
-
-## Global Error
 
 _Response (500 - Internal Server Error)_
 
