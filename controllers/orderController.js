@@ -1,4 +1,5 @@
 const { User, Order, Product } = require("../models");
+const axios = require("axios");
 
 class OrderController {
   static async getOrderById(req, res, next) {
@@ -79,6 +80,43 @@ class OrderController {
       });
     } catch (error) {
       next(error);
+    }
+  }
+  // RAJA ONGKIR == get data
+  static async ongkir(req, res, next) {
+    try {
+      const { data } = await axios({
+        method: `GET`,
+        url: `https://api.rajaongkir.com/starter/city`,
+        headers: {
+          key: `14af9cd2b9019a4b1c9eedf82642b7c1`,
+        },
+      });
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  }
+  // RAJA ONGKIR == post
+  static async cost(req, res, next) {
+    try {
+      const { origin, destination, weight, courier } = req.body;
+      const { data } = await axios({
+        method: `POST`,
+        url: `https://api.rajaongkir.com/starter/cost`,
+        headers: {
+          key: `14af9cd2b9019a4b1c9eedf82642b7c1`,
+        },
+        data: {
+          origin,
+          destination,
+          weight,
+          courier,
+        },
+      });
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).json(error);
     }
   }
 }
