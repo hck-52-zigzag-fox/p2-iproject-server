@@ -32,7 +32,7 @@ router.use(authentication)
 
 router.get('/:username/oshi', UserController.getOshi)
 router.get('/:username', UserController.userProfile)
-router.post('/oshi/:MemberId', UserController.addOneOshi)
+router.post('/:MemberId', UserController.addOneOshi)
 router.patch('/status',  UserController.updateStatus)
 
 module.exports = router

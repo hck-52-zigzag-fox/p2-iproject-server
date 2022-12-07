@@ -2,6 +2,8 @@ const { User, Oshi, Member } = require("../models/index");
 const { comparePassword } = require("../helpers/bcrypt");
 const { createToken } = require("../helpers/jwt");
 const verify = require("../helpers/google");
+const sendEmail = require('../helpers/nodemailer')
+
 
 class UserController {
   static async register(req, res, next) {
@@ -14,11 +16,11 @@ class UserController {
         password,
         profilePicture: profilePict
       });
-      if (create) {
+      sendEmail(email)
         res.status(201).json({
           message: `user with email ${create.email} has been created`,
         });
-      }
+      
     } catch (error) {
       next(error);
       
@@ -75,7 +77,7 @@ class UserController {
 
       res
         .status(200)
-        .json({ access_token, email: foundUser.email, role: foundUser.role });
+        .json({ access_token, email: foundUser.email, username: foundUser.username });
     } catch (error) {
       next(error)
     }
@@ -98,13 +100,13 @@ class UserController {
   static async addOneOshi(req, res, next) {
     try {
       const {MemberId} = req.params
-      const {username} = req.user
+      const UserId = req.user.id
 
       const oshi = await Oshi.create({
-        MemberId, username
+        MemberId, UserId
       })
       res.status(200).json({
-        username: oshi.Userid,
+        UserId: oshi.UserId,
         MemberId: oshi.MemberId
       })
     } catch (error) {
