@@ -29,20 +29,28 @@ class ControllerPlanet {
         try {
             let { planetName } = req.params
 
-            console.log(req.params);
+            let {objectName} = req.query
+            // console.log(req.params);
             const placeholder = {}
-
+            console.log(objectName);
             const object = await Object.findOne({
                 where: { name: { [Op.iLike]: `%${planetName}%` } }
             })
 
-            const detailObject = await axios({
-                url: `https://api.le-systeme-solaire.net/rest/bodies?filter[]=englishName,cs,${planetName}&exclude=name,perihelion,aphelion,eccentricity,inclination,mass[{massExponent}],vol[{volumeExponent}],escape,meanRadius,equaRadius,polarRadius,flattening,dimension,sideralOrbit,sideralRotation,aroundPlanet,alternativeName,axialTilt,mainAnomaly,argPeriapsis,longAscNode`,
-                method: "get"
-            })
+            let detailObject 
+            if(!objectName){
+                detailObject = await axios({
+                    url: `https://api.le-systeme-solaire.net/rest/bodies?filter[]=englishName,cs,${planetName}&exclude=name,perihelion,aphelion,eccentricity,inclination,mass[{massExponent}],vol[{volumeExponent}],escape,meanRadius,equaRadius,polarRadius,flattening,dimension,sideralOrbit,sideralRotation,aroundPlanet,alternativeName,axialTilt,mainAnomaly,argPeriapsis,longAscNode`,
+                    method: "get"
+                })
+            }else {
+                detailObject = await axios({
+                    url: `https://api.le-systeme-solaire.net/rest/bodies?filter[]=englishName,cs,${objectName}&exclude=name,perihelion,aphelion,eccentricity,inclination,mass[{massExponent}],vol[{volumeExponent}],escape,meanRadius,equaRadius,polarRadius,flattening,dimension,sideralOrbit,sideralRotation,aroundPlanet,alternativeName,axialTilt,mainAnomaly,argPeriapsis,longAscNode`,
+                    method: "get"
+                })
+            }
 
 
-            // console.log(detailObject);
 
             if (!detailObject) {
                 throw { name: "Object not found" }
@@ -86,6 +94,8 @@ class ControllerPlanet {
             }
             placeholder.detailObject = detailObject.data.bodies
             placeholder.pictures = pictures
+            console.log(placeholder);
+
             // placeholder.videos = videos
             // console.log(object);
             res.status(200).json(placeholder)
@@ -113,6 +123,34 @@ class ControllerPlanet {
                 object
             })
         } catch (error) {
+            next(error)
+        }
+    }
+
+    static async getCustomObject(req, res, next){
+        try{
+
+            const customObject = await Object.findAll({where:{customObject:true}})
+
+            res.status(200).json(
+                customObject
+            )
+        }catch(error){
+            next(error)
+        }
+    }
+
+    static async getSuggestion(req,res,next){
+        try{
+
+            let suggestions = await axios({
+                url:"https://api.le-systeme-solaire.net/rest/bodies?data=englishName",
+                method:"get"
+            })
+
+            suggestions = suggestions.data.bodies
+            res.status(200).json(suggestions)
+        }catch(error){
             next(error)
         }
     }
