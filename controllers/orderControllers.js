@@ -1,4 +1,5 @@
 const { Order, User, Item } = require("../models/");
+const midtransClient = require("midtrans-client");
 
 class OrderController {
   static async fetchOrder(req, res, next) {
@@ -103,6 +104,57 @@ class OrderController {
         .status(200)
         .json({ message: `Success delete order with id: ${foundOrder.id}` });
     } catch (err) {
+      next(err);
+    }
+  }
+  static async midtrans(req, res, next) {
+    try {
+      const id = +req.params.id;
+
+      const order = await Order.findByPk(id, {
+        include: [
+          {
+            model: User,
+            attributes: {
+              exclude: ["password"],
+            },
+          },
+          Item,
+        ],
+        where: {
+          UserId: req.user.id
+        }
+      });
+
+      if (!order) {
+        throw { name: "NotFound", model: "Order", id };
+      }
+
+      // Create Snap API instance
+      let snap = new midtransClient.Snap({
+        // Set to true if you want Production Environment (accept real transaction).
+        isProduction: false,
+        serverKey: process.env.MIDTRANS_SERVER_KEY,
+      });
+
+      let parameter = {
+        transaction_details: {
+          order_id: 'midtrans -' + order.id + 'test',
+          gross_amount: order.Item.price,
+        },
+        credit_card: {
+          secure: true,
+        },
+        customer_details: {
+          email: order.User.email,
+        },
+      };
+
+      const midtrans_token = await snap.createTransaction(parameter);
+
+      res.status(201).json({ midtrans_token, parameter });
+    } catch (err) {
+      console.log(err)
       next(err);
     }
   }
