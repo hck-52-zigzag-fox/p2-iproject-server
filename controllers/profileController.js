@@ -61,6 +61,7 @@ class ProfileController {
   }
   static async getAllProfile(req, res, next) {
     try {
+      const { id } = req.user;
       const dataFind = await Profile.findAll({
         include: [
           {
@@ -68,6 +69,27 @@ class ProfileController {
           },
         ],
       });
+      // filter without id
+
+      dataFind.forEach((el) => {
+        if (el.UserId === id) {
+          dataFind.splice(dataFind.indexOf(el), 1);
+        }
+      });
+      res.status(200).json(dataFind);
+    } catch (err) {
+      next(err);
+    }
+  }
+  static async getProfileById(req, res, next) {
+    try {
+      const { id } = req.params;
+      const dataFind = await Profile.findOne({
+        where: {
+          UserId: id,
+        },
+      });
+
       res.status(200).json(dataFind);
     } catch (err) {
       next(err);
