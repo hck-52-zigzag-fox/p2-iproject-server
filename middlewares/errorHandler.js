@@ -15,6 +15,12 @@ function errorHandler(err, req, res, next){
     }else if(err.name === 'AxiosError'){
         status = err.response.status
         message = err.response.data.message
+    }else if(err.name === "Unauthorized"){
+        status = 401
+        message = "Please login first"
+    }else if(err.name === 'JsonWebTokenError' || err.name === 'InvalidToken'){
+        status = 401
+        message = "Invalid token"
     }
 
     res.status(status).json({message})
