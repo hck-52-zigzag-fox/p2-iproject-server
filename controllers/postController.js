@@ -14,8 +14,25 @@ class PostController {
             ],
           },
         ],
+        order: [["createdAt", "DESC"]],
       });
       res.status(200).json(posts);
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async createPost(req, res, next) {
+    try {
+      const { id } = req.user;
+      const { content } = req.body;
+      let imgUrl;
+      req.file ? (imgUrl = req.file.path) : (imgUrl = "#");
+      const post = await Post.create({
+        imgUrl,
+        content,
+        UserId: id,
+      });
+      res.status(201).json(post);
     } catch (error) {
       next(error);
     }

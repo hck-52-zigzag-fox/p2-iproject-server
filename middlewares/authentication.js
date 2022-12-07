@@ -21,4 +21,11 @@ async function authentication(req, res, next) {
     next(err);
   }
 }
+async function cobain(req, res, next) {
+  try {
+    next();
+  } catch (err) {
+    next(err);
+  }
+}
 module.exports = { authentication };
