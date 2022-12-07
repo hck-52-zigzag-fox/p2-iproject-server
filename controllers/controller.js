@@ -1,16 +1,14 @@
-const {
-  Customer,
-  Product,
-  Category,
-  Bookmark,
-} = require("../models/index");
+const { Customer, Product, Category, Bookmark } = require("../models/index");
 const { Op } = require("sequelize");
 const { createToken } = require("../helpers/jwt");
-const { hashedPassword } = require("../helpers/bcrypt")
+const { hashedPassword } = require("../helpers/bcrypt");
 const { comparePassword } = require("../helpers/bcrypt");
 const { OAuth2Client } = require("google-auth-library");
-const client = new OAuth2Client("775756423500-iqack5nfdtjq43tpii2nldmrc7tlrud0.apps.googleusercontent.com");
-const sendEmail = require('../helpers/nodemailer')
+const client = new OAuth2Client(
+  "775756423500-iqack5nfdtjq43tpii2nldmrc7tlrud0.apps.googleusercontent.com"
+);
+const sendEmail = require("../helpers/nodemailer");
+const midtransClient = require("midtrans-client");
 
 class ControllerPublic {
   static async register(req, res, next) {
@@ -19,7 +17,7 @@ class ControllerPublic {
       const publicRegister = await Customer.create({
         username,
         email,
-        password:hashedPassword(password),
+        password: hashedPassword(password),
         role: "customer",
         phoneNumber,
         address,
@@ -106,7 +104,7 @@ class ControllerPublic {
         email: cust[0].email,
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
@@ -181,7 +179,7 @@ class ControllerPublic {
     const { ProductId } = req.params;
     try {
       const checkProduct = await Bookmark.findOne({
-        where: { ProductId,CustomerId:req.customer.id },
+        where: { ProductId, CustomerId: req.customer.id },
       });
       if (checkProduct) throw { name: "Already Bookmarked" };
       const marked = await Bookmark.create({
@@ -213,19 +211,58 @@ class ControllerPublic {
     }
   }
 
-  static async deleteBookmark(req, res, next) {
-    const { ProductId } = req.params;
-    console.log(ProductId, `<<<<<<<<<<<`);
+  // static async deleteBookmark(req, res, next) {
+  //   const { ProductId } = req.params;
+  //   try {
+  //     await Bookmark.destroy({
+  //       where: {
+  //         ProductId,
+  //       },
+  //     });
+  //     res.status(200).json(`Success delete id : ${ProductId}`);
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // }
+
+  static async checkout(req, res, next) {
     try {
-      const deleted = await Bookmark.destroy({
+      const findBookedProduct = await Bookmark.findAll({
         where: {
-          id: ProductId,
+          CustomerId: req.customer.id,
         },
+        include: Product,
       });
-      console.log(deleted, `<<<< deleted`);
-      res.status(200).json(`Success delete id : ${ProductId}`);
+      let totalPrice = 0;
+      findBookedProduct.forEach((el) => {
+        totalPrice += el.Product.price;
+      });
+
+      let snap = new midtransClient.Snap({
+        isProduction: false,
+        serverKey: "SB-Mid-server-FjWTm5aOYSssk0e7XE5reVNK",
+      });
+
+      let parameter = {
+        transaction_details: {
+          order_id: "YOUR-ORDERID-" + Math.floor(10000 + Math.random() * 20000),
+          gross_amount: totalPrice,
+        },
+        credit_card: {
+          secure: true,
+        },
+        customer_details: {
+          email: req.customer.email,
+        },
+      };
+
+      const midtransToken = await snap.createTransaction(parameter);
+      res.status(201).json({
+        token: midtransToken.token,
+        redirect_url: midtransToken.midtransToken,
+      });
     } catch (error) {
-      next(error);
+      console.log(error);
     }
   }
 }
