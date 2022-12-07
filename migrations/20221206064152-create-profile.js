@@ -18,7 +18,6 @@ module.exports = {
       },
       gender: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       dateOfBirth: {
         type: Sequelize.DATE,
@@ -34,6 +33,7 @@ module.exports = {
       UserId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        unique: true,
         references: {
           model: "Users",
           key: "id",
