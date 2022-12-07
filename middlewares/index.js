@@ -1,11 +1,12 @@
 const errHandler = require("./errHandler");
 const { authentication } = require("./authentication");
 const { authorization } = require("./authorization");
-const upload = require("./multer");
+const { multerUploads, dataUri } = require("./multer");
 
 module.exports = {
   errHandler,
   authentication,
   authorization,
-  upload,
+  multerUploads,
+  dataUri,
 };
