@@ -6,12 +6,16 @@ let axios = require('axios');
 class movieController {
     static async getMovie(req, res, next) {
         try {
-            let movieAPI = `https://api.themoviedb.org/3/list/1?api_key=${process.env.APIkey}&language=en-US`
+            let { page } = req.query
+            let movieAPI = ``
+            if (page) movieAPI += `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.APIkey}&language=en-US&page=${page}`
+            else movieAPI += `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.APIkey}&language=en-US&page=1`
             let { data } = await axios({
                 url: movieAPI,
                 method: "GET",
             })
-            res.status(200).json({ movies: data.items })
+            movieAPI = ''
+            res.status(200).json({ movies: data.results })
         } catch (error) {
             next(error)
         }
@@ -105,22 +109,72 @@ class movieController {
     }
 
     static async addCart(req, res, next) {
+
         try {
-            let { belongs_to_collection: { name, id, poster_path }, } = req.body
+            let { title, id, poster_path } = req.body
             const [movie, created] = await Movie.findOrCreate({
                 where: {
                     id_tmdb: id
                 },
                 defaults: {
-                    title: name,
+                    title,
                     id_tmdb: id,
                     poster_path,
                     price: id * 100
                 },
             });
-            console.log(movie)
-            await Cart.create({ UserId: req.user.id, MovieId: movie.id })
+            // console.log(movie)
+            await Cart.create({ UserId: req.user.id, MovieId: movie.id, status: 'pending' })
             res.status(201).json({ messagge: `Sucsess add ${movie.title} to cart` })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    static async getRecomendation(req, res, next) {
+        // url: `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.APIkey}`,
+        try {
+            let { recomendation } = req.query
+            let { data } = await axios({
+                url: `https://api.themoviedb.org/3/movie/${recomendation}/recommendations?api_key=${process.env.APIkey}&language=en-US&page=1`,
+                method: "GET",
+            })
+            console.log(data)
+            res.status(200).json({ results: data.results.slice(0, 9) })
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async getCart(req, res, next) {
+        try {
+            let option = {
+                include: [
+                    {
+                        model: User,
+                        attributes: {
+                            exclude: ["password", "createdAt", "updatedAt"]
+                        }
+                    },
+                    {
+                        model: Movie,
+                        attributes: {
+                            exclude: ["createdAt", "updatedAt"]
+                        }
+                    }
+                ],
+                where: {
+                    UserId: req.user.id
+                },
+                attributes: {
+                    exclude: ["createdAt", "updatedAt"]
+                }
+            }
+
+            let cart = await Cart.findAll(option)
+
+            console.log(cart[0].Movie)
+            res.status(200).json({ cart })
         } catch (error) {
             console.log(error)
         }

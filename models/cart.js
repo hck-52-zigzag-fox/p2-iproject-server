@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Cart.belongsTo(models.User)
+      Cart.belongsTo(models.Movie)
     }
   }
   Cart.init({
@@ -20,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     MovieId: {
       type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    status: {
+      type: DataTypes.STRING,
       allowNull: false
     }
   }, {
