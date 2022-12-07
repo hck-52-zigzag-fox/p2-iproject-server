@@ -40,6 +40,11 @@ const errorHandler = async (err, req, res, next) => {
             message = "Data not found"
             break;
 
+        case 'alreadyPaid':
+            statusCode = 400
+            message = "You're already a paid member"
+            break;
+
         // case 'forbidden':
         //     statusCode = 403
         //     message = "You are not authorized"

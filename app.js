@@ -3,6 +3,7 @@ const app = express()
 const port = 3000
 const { User, Food, foodLog, popularFood } = require('./models')
 const axios = require('axios')
+const midtransClient = require('midtrans-client');
 
 const authentication = require('./middlewares/authentication')
 const errorHandler = require('./middlewares/errorHandler')
@@ -68,7 +69,9 @@ app.post('/login', async (req, res, next) => {
 
     res.status(200).json({
       access_token,
-      email
+      email,
+      status: user.status,
+      dailyCalories: user.dailyCalories
     })
 
     req.headers = {
@@ -98,24 +101,51 @@ app.get('/food', async (req, res, next) => {
       throw { name: 'notFound' }
     }
 
-    const result = await Food.create({
-      name: data.items[0].name,
-      sugarG: data.items[0].sugar_g,
-      fiberG: data.items[0].fiber_g,
-      sodiumMg: data.items[0].sodium_mg,
-      potassiumMg: data.items[0].potassium_mg,
-      saturatedFatG: data.items[0].fat_saturated_g,
-      totalFatG: data.items[0].fat_total_g,
-      calories: data.items[0].calories,
-      cholesterolMg: data.items[0].cholesterol_mg,
-      proteinG: data.items[0].protein_g,
-      carbsTotalG: data.items[0].carbohydrates_total_g
+
+    let find = await Food.findOne({
+      where: { name: item }
     })
 
+    if (!find) {
+      await Food.create({
+        name: data.items[0].name,
+        sugarG: data.items[0].sugar_g,
+        fiberG: data.items[0].fiber_g,
+        sodiumMg: data.items[0].sodium_mg,
+        potassiumMg: data.items[0].potassium_mg,
+        saturatedFatG: data.items[0].fat_saturated_g,
+        totalFatG: data.items[0].fat_total_g,
+        calories: data.items[0].calories,
+        cholesterolMg: data.items[0].cholesterol_mg,
+        proteinG: data.items[0].protein_g,
+        carbsTotalG: data.items[0].carbohydrates_total_g
+      })
+    }
+
+    let food = await Food.findOne({
+      where: { name: item }
+    })
+
+    let result = {
+      id: food.id,
+      name: food.name,
+      sugarG: food.sugarG,
+      fiberG: food.fiberG,
+      sodiumMg: food.sodiumMg,
+      potassiumMg: food.potassiumMg,
+      saturatedFatG: food.saturatedFatG,
+      totalFatG: food.totalFatG,
+      calories: food.calories,
+      cholesterolMg: food.cholesterolMg,
+      proteinG: food.proteinG,
+      carbsTotalG: food.carbsTotalG,
+      status: food.foodStatus
+    }
 
     res.status(200).json(result)
 
   } catch (error) {
+    console.log(error);
     next(error)
   }
 })
@@ -131,10 +161,11 @@ app.get('/popularfood', async (req, res, next) => {
   }
 })
 
+app.use(authentication)
+
 app.patch('/users', async (req, res, next) => {
   try {
     const { id } = req.user
-
     const user = await User.findByPk(id)
     await User.update({ status: 'paid' }, { where: { id } })
 
@@ -148,7 +179,42 @@ app.patch('/users', async (req, res, next) => {
   }
 })
 
-app.use(authentication)
+
+app.post('/generate-midtrans-token', async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.user.id)
+    if (user.status == 'paid') {
+      throw { name: 'alreadyPaid' }
+    }
+
+    let snap = new midtransClient.Snap({
+      // Set to true if you want Production Environment (accept real transaction).
+      isProduction: false,
+      serverKey: 'SB-Mid-server-koVIILNFoaXlrshKNe8179ED'
+    });
+
+    let parameter = {
+      transaction_details: {
+        order_id: "YOUR-ORDERID-" + Math.floor(1000000 + Math.random() * 9000000),
+        gross_amount: 100000
+      },
+      credit_card: {
+        "secure": true
+      },
+      customer_details: {
+        email: user.email,
+      }
+    };
+
+    const midtransToken = await snap.createTransaction(parameter)
+    res.status(200).json(midtransToken);
+
+  } catch (error) {
+    console.log(error);
+    next(error)
+  }
+})
+
 app.use(authorizationStatus)
 
 app.post('/foodlogs/:id', async (req, res, next) => {

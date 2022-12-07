@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Food.beforeCreate((food) => {
 
-    if (food.calories <= 100) {
+    if (food.calories <= 150) {
       food.foodStatus = 'green'
     } else if (food.calories > 150) {
       food.foodStatus = 'red'
