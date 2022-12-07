@@ -1,3 +1,6 @@
+const { verifyToken } = require("../helpers/helper");
+const { User } = require("../models");
+
 function errorHandler(err, req, res, next) {
   let status = 500;
   let message = "Internal server error";
@@ -19,10 +22,37 @@ function errorHandler(err, req, res, next) {
     case "invalid_credentials":
       status = 401;
       message = "Invalid email/password";
+      break;
+    case "Unauthorized":
+      status = 401;
+      message = "Please sign-in first";
+      break;
     default:
       break;
   }
   res.status(status).json({ message });
 }
 
-module.exports = errorHandler;
+async function authentification(req, res, next) {
+  try {
+    if (!req.headers.access_token) {
+      throw { name: "Unauthorized" };
+    }
+    const decoded = verifyToken(req.headers.access_token);
+
+    const foundUser = await User.findByPk(decoded.id);
+    if (!foundUser) {
+      throw { name: "Unauthorized" };
+    }
+
+    req.user = {
+      id: foundUser.id,
+      email: foundUser.email,
+    };
+    next();
+  } catch (err) {
+    next(err);
+  }
+}
+
+module.exports = { errorHandler, authentification };
