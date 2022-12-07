@@ -1,6 +1,5 @@
 const { signToken, upload } = require("../helpers");
-const { dataUri } = require("../middlewares");
-const { uploader } = require("../middlewares/cloudinary");
+
 const { Profile } = require("../models");
 
 class ProfileController {
