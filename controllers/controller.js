@@ -10,6 +10,7 @@ const { hashedPassword } = require("../helpers/bcrypt")
 const { comparePassword } = require("../helpers/bcrypt");
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client("775756423500-iqack5nfdtjq43tpii2nldmrc7tlrud0.apps.googleusercontent.com");
+const sendEmail = require('../helpers/nodemailer')
 
 class ControllerPublic {
   static async register(req, res, next) {
@@ -203,6 +204,7 @@ class ControllerPublic {
         },
         include: Product,
       });
+      // sendEmail(req.customer.email)
       res.status(200).json({
         readBooked,
       });
