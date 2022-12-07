@@ -67,6 +67,54 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      origin: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Origin is required",
+          },
+          notNull: {
+            msg: "Origin is required",
+          },
+        },
+      },
+      destination: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Destination is required",
+          },
+          notNull: {
+            msg: "Destination is required",
+          },
+        },
+      },
+      weight: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Weight is required",
+          },
+          notNull: {
+            msg: "Weight is required",
+          },
+        },
+      },
+      courier: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Courier is required",
+          },
+          notNull: {
+            msg: "Courier is required",
+          },
+        },
+      },
     },
     {
       sequelize,

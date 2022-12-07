@@ -31,7 +31,23 @@ module.exports = {
         defaultValue: "Unpaid",
       },
       size: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      origin: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      destination: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      weight: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      courier: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       createdAt: {
