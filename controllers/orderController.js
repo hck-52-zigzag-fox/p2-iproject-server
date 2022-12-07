@@ -82,7 +82,6 @@ class OrderController {
       next(error);
     }
   }
-  // RAJA ONGKIR == get data
   static async ongkir(req, res, next) {
     try {
       const { data } = await axios({
@@ -97,7 +96,6 @@ class OrderController {
       res.status(500).json(error);
     }
   }
-  // RAJA ONGKIR == post
   static async cost(req, res, next) {
     try {
       const { origin, destination, weight, courier } = req.body;
