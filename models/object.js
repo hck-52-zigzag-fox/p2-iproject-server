@@ -14,12 +14,48 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Object.init({
-    name: DataTypes.STRING,
+    name: {
+      type:DataTypes.STRING,
+      allowNull:false,
+      unique:{
+        msg:"Object name is already discovered"
+      },
+      validate:{
+        notEmpty:{
+          msg:"Name cannot be empty"
+        },
+        notNull:{
+          msg:"Name cannot be empty"
+        }
+      }
+    },
     discoveredBy: DataTypes.STRING,
-    discoveryDate: DataTypes.DATE,
-    imageUrl: DataTypes.STRING,
+    discoveryDate: DataTypes.STRING,
+    imageUrl: {
+      type:DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        notEmpty:{
+          msg:"Object appearance cannot be empty"
+        },
+        notNull:{
+          msg:"Object appearance cannot be empty"
+        }
+      }
+    },
     customObject: DataTypes.BOOLEAN,
-    type: DataTypes.STRING
+    type: {
+      type:DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        notEmpty:{
+          msg:"Type cannot be empty"
+        },
+        notNull:{
+          msg:"Type cannot be empty"
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Object',
