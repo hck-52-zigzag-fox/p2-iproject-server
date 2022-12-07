@@ -37,7 +37,7 @@ class UserController {
       let payload = { id: user.id, email: user.email };
       const access_token = signToken(payload);
 
-      res.status(200).json({ name: user.username, access_token });
+      res.status(200).json({ id: user.id, access_token });
     } catch (err) {
       next(err);
     }
