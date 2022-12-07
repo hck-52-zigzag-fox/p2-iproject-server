@@ -1,4 +1,4 @@
-const { Mentor: ModelMentor, Course: ModelCourse } = require("../models");
+const { Mentor: ModelMentor, Course: ModelCourse, Chapter } = require("../models");
 const cloudinary = require("../helpers/cloudinary");
 const fs = require("fs");
 
@@ -64,12 +64,20 @@ class Course {
         attributes: {
           exclude: ["createdAt", "updatedAt"],
         },
-        include: {
-          model: ModelMentor,
-          attributes: {
-            exclude: ["createdAt", "updatedAt"],
+        include: [
+          {
+            model: ModelMentor,
+            attributes: {
+              exclude: ["createdAt", "updatedAt"],
+            },
           },
-        },
+          {
+            model: Chapter,
+            attributes: {
+              exclude: ["createdAt", "updatedAt"],
+            },
+          },
+        ],
       };
 
       const course = await ModelCourse.findByPk(id, options);
