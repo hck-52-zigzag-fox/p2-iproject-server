@@ -195,7 +195,22 @@ app.delete('/foodlogs/:id', async (req, res, next) => {
   }
 })
 
+app.patch('/users', async (req, res, next) => {
+  try {
+    const { id } = req.user
 
+    const user = await User.findByPk(id)
+    await User.update({ status: 'paid' }, { where: { id } })
+
+    res.status(200).json({
+      message: `${user.email} has been upgraded to paid member`
+    })
+
+  } catch (error) {
+    console.log(error);
+    next(error)
+  }
+})
 
 app.use(errorHandler)
 
