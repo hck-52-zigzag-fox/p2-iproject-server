@@ -211,19 +211,19 @@ class ControllerPublic {
     }
   }
 
-  // static async deleteBookmark(req, res, next) {
-  //   const { ProductId } = req.params;
-  //   try {
-  //     await Bookmark.destroy({
-  //       where: {
-  //         ProductId,
-  //       },
-  //     });
-  //     res.status(200).json(`Success delete id : ${ProductId}`);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // }
+  static async deleteBookmark(req, res, next) {
+    const { ProductId } = req.params;
+    try {
+      await Bookmark.destroy({
+        where: {
+          ProductId,
+        },
+      });
+      res.status(200).json(`Success delete id : ${ProductId}`);
+    } catch (error) {
+      next(error);
+    }
+  }
 
   static async checkout(req, res, next) {
     try {
