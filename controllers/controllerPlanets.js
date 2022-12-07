@@ -11,9 +11,9 @@ class ControllerPlanet{
             //     method:"get"
             // })
 
-            const objects = await Object.findAll(
+            const objects = await Object.findAll({where:{customPlanet:false}}
             )
-
+            
             // console.log(objects.data.bodies);
             res.status(200).json(
                 // planets.data.bodies
@@ -32,20 +32,65 @@ class ControllerPlanet{
             let {planetName} = req.params
 
             console.log(req.params);
+            const placeholder = {}
+
             const object = await Object.findOne({
                 where:{name:{[Op.iLike]: `%${planetName}%`}}
             })
 
             const detailObject = await axios({
-                url:`https://api.le-systeme-solaire.net/rest/bodies?filter[]=englishName,cs,${planetName}&exclude=name,perihelion,aphelion,eccentricity,inclination,mass[{massExponent}],vol[{volumeExponent}],escape,meanRadius,equaRadius,polarRadius,flattening,dimension,sideralOrbit,sideralRotation,aroundPlanet,alternativeName,axialTilt,mainAnomaly,argPeriapsis,longAscNode,discoveredBy,discoveryDate`,
+                url:`https://api.le-systeme-solaire.net/rest/bodies?filter[]=englishName,cs,${planetName}&exclude=name,perihelion,aphelion,eccentricity,inclination,mass[{massExponent}],vol[{volumeExponent}],escape,meanRadius,equaRadius,polarRadius,flattening,dimension,sideralOrbit,sideralRotation,aroundPlanet,alternativeName,axialTilt,mainAnomaly,argPeriapsis,longAscNode`,
                 method:"get"
             })
 
-            // console.log(detailObject);
-            object.dataValues.detailObject = detailObject.data.bodies
 
-            console.log(object);
-            res.status(200).json(object)
+            // console.log(detailObject);
+
+            if(!detailObject){
+                throw {name:"Object not found"}
+            }
+            const nasaPictures = await axios({
+                url:`https://images-api.nasa.gov/search?q=${planetName}&media_type=image&year_start=2010`,
+                method:"get"
+            })
+
+            // const nasaVideos = await axios({
+            //     url:`https://images-api.nasa.gov/search?q=${planetName}&media_type=video&year_start=2010`,
+            //     method:"get"
+            // })
+
+            let pictures = []
+            nasaPictures.data.collection.items.forEach((el,index)=>{
+                // console.log(index);
+                if(index < 5){
+                    // console.log(el);
+                    // console.log(`this`);
+                    pictures.push(el) 
+                }
+                index++
+            })
+
+            // let videos = []
+            // nasaVideos.data.collection.items.forEach((el, index)=>{
+            //     if(index < 5){
+            //         videos.push(el)
+            //     }
+
+            //     index++
+            // })
+
+            // console.log(pictures.length);
+            // console.log(nasaPictures.data.collection.items);
+            // console.log(nasaPictures.data.collection.items.length);
+
+            if(object){
+                placeholder.object = object
+            }
+            placeholder.detailObject = detailObject.data.bodies
+            placeholder.pictures = pictures
+            // placeholder.videos = videos
+            // console.log(object);
+            res.status(200).json(placeholder)
         }catch (error){
             console.log(error);
         }
