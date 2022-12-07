@@ -1,7 +1,7 @@
 function errorHandler(err, req, res, next){
     let status = 500
     let message = "Internal Server Error"
-    console.log(err)
+    // console.log(err.response.status)
 
     if(err.name === 'SequelizeValidationError' || err.name === 'SequelizeUniqueConstraintError'){
         status = 400
@@ -12,6 +12,9 @@ function errorHandler(err, req, res, next){
     }else if(err.name === 'InvalidCredentials'){
         status = 401
         message = "Invalid Email or Password"
+    }else if(err.name === 'AxiosError'){
+        status = err.response.status
+        message = err.response.data.message
     }
 
     res.status(status).json({message})

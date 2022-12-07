@@ -1,3 +1,4 @@
 const UserController = require('./userController')
+const GameController = require('./gameController')
 
-module.exports = {UserController}
+module.exports = {UserController, GameController}
