@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasMany(models.Post, { foreignKey: "UserId" });
+      User.hasOne(models.Profile, { foreignKey: "UserId" });
     }
   }
   User.init(
@@ -56,9 +57,25 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   User.beforeCreate((user, options) => {
-    console.log("beforeCreate", user.password);
+    // console.log("beforeCreate", user.password);
     user.password = hashPassword(user.password);
-    console.log("afterCreate", user.password);
+    // console.log("afterCreate", user.password);
   });
+  // create profile
+
+  User.afterCreate((user, options) => {
+    // create Profile
+    sequelize.models.Profile.create({
+      name: user.email,
+      profilePict: "https://i.stack.imgur.com/l60Hf.png",
+      about: "About me",
+      job: "Job",
+      company: "Company",
+      dateOfBirth: new Date(),
+      gender: "Not yet determined",
+      UserId: user.id,
+    });
+  });
+
   return User;
 };
