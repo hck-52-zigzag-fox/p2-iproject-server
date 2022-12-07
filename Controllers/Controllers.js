@@ -1,7 +1,7 @@
 const { comparedPassword } = require("../helpers/bcrypt");
 const { signToken } = require("../helpers/jwt");
 const sendMail = require("../helpers/nodemailer");
-const { User, Profile, Post } = require("../models/index");
+const { User, Profile, Post, Comment } = require("../models/index");
 const DatauriParser = require("datauri/parser");
 const cloudinary = require("../helpers/cloudinary");
 const profile = require("../models/profile");
@@ -167,12 +167,35 @@ class Controller {
     try {
       const { id } = req.params;
       const { content } = req.body;
-      const comment = await Comment({
+      const comment = await Comment.create({
         content,
         PostId: id,
         UserId: req.user.id,
       });
       res.status(201).json(comment);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async listComment(req, res, next) {
+    try {
+      let { id } = req.params;
+      let comment = await Comment.findAll({
+        where: {
+          PostId: id,
+        },
+        attributes: ["id", "Content", "PostId", "UserId"],
+        include: {
+          model: User,
+          attributes: ["username"],
+          include: {
+            model: Profile,
+            attributes: ["imgUrl"],
+          },
+        },
+      });
+      res.status(200).json(comment);
     } catch (err) {
       next(err);
     }
