@@ -172,7 +172,7 @@ class movieController {
             }
 
             let cart = await Cart.findAll(option)
-
+       
             console.log(cart[0].Movie)
             res.status(200).json({ cart })
         } catch (error) {
