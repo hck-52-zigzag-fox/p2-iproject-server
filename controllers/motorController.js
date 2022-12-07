@@ -1,9 +1,9 @@
-const { Motorcycle, Brands } = require("../models");
+const { Motorcycle, Brand } = require("../models");
 
 class MotorController {
   static async handleMotorcycles(req, res, next) {
     try {
-      const motorcycles = await Motorcycle.findAll();
+      const motorcycles = await Motorcycle.findAll({ include: Brand });
       res.status(200).json(motorcycles);
     } catch (err) {
       next(err);
@@ -13,7 +13,7 @@ class MotorController {
     try {
       const id = +req.params.id;
       const foundMotorcycle = await Motorcycle.findByPk(id, {
-        include: Brands,
+        include: Brand,
       });
 
       if (!foundMotorcycle) {

@@ -1,10 +1,37 @@
 const midtransClient = require("midtrans-client");
-const { User } = require("../models");
+const { User, Motorcycle } = require("../models");
 
 class RentController {
+  static async handleCreateRent(req, res, next) {
+    try {
+    } catch (err) {
+      nexy(err);
+    }
+  }
+  static async handleStatus(req, res, next) {
+    try {
+      const id = +req.params.id;
+
+      const foundMotorcycle = await Motorcycle.findByPk(id);
+      if (!foundMotorcycle) {
+        throw { name: "NOT_FOUND" };
+      }
+
+      await Motorcycle.update(
+        {
+          status: "booked",
+        },
+        { where: { id } }
+      );
+      res.status(200).json({ message: "Motorcycle has been booked" });
+    } catch (err) {
+      next(err);
+    }
+  }
   static async handleMidtrans(req, res, next) {
     try {
-      //   const price = +req.params.price;
+      const price = +req.params.price;
+      const trxcode = req.params.trxcode;
       const id = +req.user.id;
 
       const foundUser = await User.findByPk(id);
@@ -16,8 +43,8 @@ class RentController {
 
       let parameter = {
         transaction_details: {
-          order_id: `TRX${new Date().getTime()}`,
-          gross_amount: 1000000,
+          order_id: trxcode,
+          gross_amount: price,
         },
         credit_card: {
           secure: true,
