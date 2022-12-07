@@ -31,7 +31,7 @@ class OrderController {
   static async addOrderById(req, res, next) {
     try {
       const { id } = req.params;
-      const { size, origin, destination, courier, weight } = req.body;
+      const { size, destination, price } = req.body;
       const addOrder = await Order.create({
         UserId: req.user.id,
         ProductId: id,
@@ -41,6 +41,7 @@ class OrderController {
         courier: "jne",
         weight: 2000,
         status: "Unpaid",
+        price,
       });
       res.status(201).json(addOrder);
     } catch (error) {
@@ -104,6 +105,7 @@ class OrderController {
   }
   static async cost(req, res, next) {
     try {
+      // console.log("object");
       const { origin, destination, weight, courier } = req.body;
       const { data } = await axios({
         method: `POST`,
@@ -119,37 +121,42 @@ class OrderController {
         },
       });
 
-      const dataUser = await User.findOne({
-        where: {
-          email,
-        },
-      });
-      // Create Snap API instance
-      let snap = new midtransClient.Snap({
-        // Set to true if you want Production Environment (accept real transaction).
-        isProduction: false,
-        serverKey: "SB-Mid-server-uvypLRCqfYnT6RVkIvfDgi8h",
-      });
-
-      let parameter = {
-        transaction_details: {
-          order_id: "02101996",
-          gross_amount: 10000,
-        },
-        credit_card: {
-          secure: true,
-        },
-        customer_details: {
-          email: dataUser.email,
-        },
+      let response = {
+        destinationName: data.rajaongkir.destination_details.city_name,
+        price: data.rajaongkir.results[0].costs[0].cost[0].value,
       };
 
-      await snap.createTransaction(parameter).then((transaction) => {
-        // transaction token
-        let transactionToken = transaction.token;
-        console.log("transactionToken:", transactionToken);
-      });
-      res.status(200).json(data);
+      // const dataUser = await User.findOne({
+      //   where: {
+      //     email,
+      //   },
+      // });
+      // // Create Snap API instance
+      // let snap = new midtransClient.Snap({
+      //   // Set to true if you want Production Environment (accept real transaction).
+      //   isProduction: false,
+      //   serverKey: "SB-Mid-server-uvypLRCqfYnT6RVkIvfDgi8h",
+      // });
+
+      // let parameter = {
+      //   transaction_details: {
+      //     order_id: "02101996",
+      //     gross_amount: 10000,
+      //   },
+      //   credit_card: {
+      //     secure: true,
+      //   },
+      //   customer_details: {
+      //     email: dataUser.email,
+      //   },
+      // };
+
+      // await snap.createTransaction(parameter).then((transaction) => {
+      //   // transaction token
+      //   let transactionToken = transaction.token;
+      //   console.log("transactionToken:", transactionToken);
+      // });
+      res.status(200).json(response);
     } catch (error) {
       res.status(500).json(error);
     }
