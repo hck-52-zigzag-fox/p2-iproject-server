@@ -146,6 +146,29 @@ app.post('/foodlogs/:id', async (req, res, next) => {
   }
 })
 
+app.get('/foodlogs', async (req, res, next) => {
+  try {
+    const UserId = req.user.id
+    const foodLogs = await foodLog.findAll({
+      where: { UserId },
+      attributes: {
+        exclude: ['createdAt', 'updatedAt']
+      },
+      include: {
+        model: Food,
+        attributes: {
+          exclude: ['createdAt', 'updatedAt']
+        },
+      }
+    })
+
+    res.status(200).json(foodLogs)
+
+  } catch (error) {
+    next(error)
+  }
+})
+
 
 
 app.use(errorHandler)
