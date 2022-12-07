@@ -11,6 +11,8 @@ router.post("/login", Controller.login);
 router.use(authentication);
 
 router.post("/profiles", multerUploads, Controller.addProfileUser);
+router.get("/users", Controller.listUsers);
+router.get("/profiles/:id", Controller.listProfileById);
 
 router.use(errorHandler);
 

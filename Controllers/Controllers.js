@@ -4,6 +4,7 @@ const sendMail = require("../helpers/nodemailer");
 const { User, Profile } = require("../models/index");
 const DatauriParser = require("datauri/parser");
 const cloudinary = require("../helpers/cloudinary");
+const profile = require("../models/profile");
 
 class Controller {
   static async register(req, res, next) {
@@ -89,6 +90,43 @@ class Controller {
       res.status(201).json(profile);
     } catch (err) {
       console.log(err);
+      next(err);
+    }
+  }
+
+  static async listUsers(req, res, next) {
+    try {
+      const Users = await User.findAll({
+        attributes: ["id", "username"],
+        include: {
+          model: Profile,
+          attributes: ["id", "imgUrl", "location", "games"],
+        },
+      });
+      res.status(200).json(Users);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async listProfileById(req, res, next) {
+    try {
+      let { id } = req.params;
+      const Profiles = await Profile.findByPk(id, {
+        attributes: [
+          "id",
+          "imgUrl",
+          "gender",
+          "dateOfBirth",
+          "location",
+          "games",
+        ],
+      });
+      if (!profile) {
+        throw { name: "Not_Found" };
+      }
+      res.status(200).json(Profiles);
+    } catch (err) {
       next(err);
     }
   }

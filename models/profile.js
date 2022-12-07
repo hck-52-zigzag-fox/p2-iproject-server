@@ -9,16 +9,70 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Profile.belongsTo(models.User);
+      Profile.belongsTo(models.User, {
+        foreignKey: "UserId",
+      });
     }
   }
   Profile.init(
     {
-      imgUrl: DataTypes.STRING,
-      gender: DataTypes.STRING,
-      dateOfBirth: DataTypes.DATE,
-      location: DataTypes.STRING,
-      games: DataTypes.STRING,
+      imgUrl: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Image url is required",
+          },
+          notNull: {
+            msg: "Image url is required",
+          },
+        },
+      },
+      gender: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Gender is required",
+          },
+          notNull: {
+            msg: "Gender is required",
+          },
+        },
+      },
+      dateOfBirth: {
+        type: DataTypes.DATE,
+      },
+      location: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Location is required",
+          },
+          notNull: {
+            msg: "Location is required",
+          },
+        },
+      },
+      games: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Games is required",
+          },
+          notNull: {
+            msg: "Games is required",
+          },
+        },
+      },
+      UserId: {
+        type: DataTypes.INTEGER,
+        unique: {
+          msg: "User only can have 1 profile",
+        },
+      },
     },
     {
       sequelize,
