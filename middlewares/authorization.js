@@ -1,5 +1,24 @@
-const { foodLog } = require('../models')
+const { User, foodLog } = require('../models')
 
+// check if paidUser
+const authorizationStatus = async (req, res, next) => {
+    try {
+
+        const UserId = req.user.id
+
+        const user = await User.findByPk(UserId)
+        if (user.status != 'paid') {
+            throw { name: 'forbidden' }
+        }
+
+        next()
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+// check if log is user's
 const authorization = async (req, res, next) => {
     try {
 
@@ -11,7 +30,7 @@ const authorization = async (req, res, next) => {
             throw { name: 'notFound' }
         }
 
-        if (UserId != gift.UserId) {
+        if (UserId != log.UserId) {
             throw { name: 'forbidden' }
         }
 
@@ -22,4 +41,4 @@ const authorization = async (req, res, next) => {
     }
 }
 
-module.exports = authorization
+module.exports = {authorization, authorizationStatus}

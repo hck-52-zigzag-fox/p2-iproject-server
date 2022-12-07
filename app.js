@@ -6,6 +6,7 @@ const axios = require('axios')
 
 const authentication = require('./middlewares/authentication')
 const errorHandler = require('./middlewares/errorHandler')
+const { authorization, authorizationStatus } = require('./middlewares/authorization')
 
 const cors = require('cors')
 app.use(cors())
@@ -119,7 +120,25 @@ app.get('/food', async (req, res, next) => {
   }
 })
 
+app.patch('/users', async (req, res, next) => {
+  try {
+    const { id } = req.user
+
+    const user = await User.findByPk(id)
+    await User.update({ status: 'paid' }, { where: { id } })
+
+    res.status(200).json({
+      message: `${user.email} has been upgraded to paid member`
+    })
+
+  } catch (error) {
+    console.log(error);
+    next(error)
+  }
+})
+
 app.use(authentication)
+app.use(authorizationStatus)
 
 app.post('/foodlogs/:id', async (req, res, next) => {
   try {
@@ -169,7 +188,7 @@ app.get('/foodlogs', async (req, res, next) => {
   }
 })
 
-app.delete('/foodlogs/:id', async (req, res, next) => {
+app.delete('/foodlogs/:id', authorization, async (req, res, next) => {
   try {
     const { id } = req.params
 
@@ -191,23 +210,6 @@ app.delete('/foodlogs/:id', async (req, res, next) => {
     })
 
   } catch (error) {
-    next(error)
-  }
-})
-
-app.patch('/users', async (req, res, next) => {
-  try {
-    const { id } = req.user
-
-    const user = await User.findByPk(id)
-    await User.update({ status: 'paid' }, { where: { id } })
-
-    res.status(200).json({
-      message: `${user.email} has been upgraded to paid member`
-    })
-
-  } catch (error) {
-    console.log(error);
     next(error)
   }
 })
