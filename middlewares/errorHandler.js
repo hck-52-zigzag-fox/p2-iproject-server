@@ -1,4 +1,5 @@
 function errorHandler(err, req, res, next) {
+    console.log(err)
     let { name } = err
     let code = null
     let message = ''
@@ -16,6 +17,14 @@ function errorHandler(err, req, res, next) {
         case "SequelizeValidationError":
             code = 400
             message = err.errors[0].message
+            break
+        case "Unauthorized":
+            code = 401
+            message = 'Please login first'
+            break
+        case "JsonWebTokenError":
+            code = 401
+            message = 'Auth'
             break
 
         default:
