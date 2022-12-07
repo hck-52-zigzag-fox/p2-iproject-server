@@ -100,7 +100,8 @@ class OrderController {
       });
       res.status(200).json(data);
     } catch (error) {
-      res.status(500).json(error);
+      // res.status(500).json(error);
+      next(error);
     }
   }
   static async cost(req, res, next) {
@@ -126,39 +127,59 @@ class OrderController {
         price: data.rajaongkir.results[0].costs[0].cost[0].value,
       };
 
-      // const dataUser = await User.findOne({
-      //   where: {
-      //     email,
-      //   },
-      // });
-      // // Create Snap API instance
-      // let snap = new midtransClient.Snap({
-      //   // Set to true if you want Production Environment (accept real transaction).
-      //   isProduction: false,
-      //   serverKey: "SB-Mid-server-uvypLRCqfYnT6RVkIvfDgi8h",
-      // });
-
-      // let parameter = {
-      //   transaction_details: {
-      //     order_id: "02101996",
-      //     gross_amount: 10000,
-      //   },
-      //   credit_card: {
-      //     secure: true,
-      //   },
-      //   customer_details: {
-      //     email: dataUser.email,
-      //   },
-      // };
-
-      // await snap.createTransaction(parameter).then((transaction) => {
-      //   // transaction token
-      //   let transactionToken = transaction.token;
-      //   console.log("transactionToken:", transactionToken);
-      // });
       res.status(200).json(response);
     } catch (error) {
       res.status(500).json(error);
+      next(error);
+    }
+  }
+  static async midtrans(req, res, next) {
+    try {
+      const order = await Order.findOne({
+        include: [
+          {
+            model: User,
+            attributes: { exclude: ["updatedAt", "createdAt", "password"] },
+          },
+          Product,
+        ],
+        where: {
+          UserId: req.user.id,
+        },
+      });
+      // Create Snap API instance
+      let snap = new midtransClient.Snap({
+        // Set to true if you want Production Environment (accept real transaction).
+        isProduction: false,
+        serverKey: process.env.SERVER_KEY_MITRANS,
+      });
+      let parameter = {
+        transaction_details: {
+          order_id:
+            "Transaksi Pembayaran" +
+            Math.floor(1234567890 * Math.random(987654321)),
+          gross_amount: order.price,
+        },
+        credit_card: {
+          secure: true,
+        },
+        customer_details: {
+          email: order.User.email,
+        },
+        item_details: [
+          {
+            id: order.Product.id,
+            name: "item name",
+            price: order.price,
+            quantity: 1,
+          },
+        ],
+      };
+      const mitrans_token = await snap.createTransaction(parameter);
+      res.status(201).json({ mitrans_token, order });
+    } catch (error) {
+      console.log(error);
+      next(error);
     }
   }
 }
