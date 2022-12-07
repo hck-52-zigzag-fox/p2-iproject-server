@@ -1,7 +1,7 @@
 const { comparedPassword } = require("../helpers/bcrypt");
 const { signToken } = require("../helpers/jwt");
 const sendMail = require("../helpers/nodemailer");
-const { User, Profile } = require("../models/index");
+const { User, Profile, Post } = require("../models/index");
 const DatauriParser = require("datauri/parser");
 const cloudinary = require("../helpers/cloudinary");
 const profile = require("../models/profile");
@@ -126,6 +126,53 @@ class Controller {
         throw { name: "Not_Found" };
       }
       res.status(200).json(Profiles);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async addPost(req, res, next) {
+    try {
+      const { content } = req.body;
+      const post = await Post.create({
+        content,
+        UserId: req.user.id,
+      });
+      res.status(201).json(post);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async listpost(req, res, next) {
+    try {
+      let post = await Post.findAll({
+        attributes: ["id", "content", "UserId"],
+        include: {
+          model: User,
+          attributes: ["username"],
+          include: {
+            model: Profile,
+            attributes: ["imgUrl"],
+          },
+        },
+      });
+      res.status(200).json(post);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async addComment(req, res, next) {
+    try {
+      const { id } = req.params;
+      const { content } = req.body;
+      const comment = await Comment({
+        content,
+        PostId: id,
+        UserId: req.user.id,
+      });
+      res.status(201).json(comment);
     } catch (err) {
       next(err);
     }
