@@ -6,12 +6,14 @@ const verify = require("../helpers/google");
 class UserController {
   static async register(req, res, next) {
     try {
+      const profilePict = req.file.path
+      // console.log(req.file.path, '<<<<<<<');
       const { username, email, password } = req.body;
       const create = await User.create({
         username,
         email,
         password,
-        profilePicture: req.file,
+        profilePicture: profilePict
       });
       if (create) {
         res.status(201).json({

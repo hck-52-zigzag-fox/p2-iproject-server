@@ -1,21 +1,29 @@
 const express = require('express')
 const UserController = require('../controllers/userController')
-const multer = require('multer')
+
 const router = express()
 const authentication = require('../middlewares/authentication')
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const multer = require('multer')
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, './public')
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname))
-    } 
-})
+cloudinary.config({
+  cloud_name: "dqschoc1m",
+  api_key: "632682329878361",
+  api_secret: "ye8aEWOo7ilmDtWr7k0wUVmkEX8",
+});
 
-const upload = multer({storage: storage})
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "JKT48",
+  },
+});
 
-router.post('/register', upload.single('profilePicture'),  UserController.register)
+const upload = multer({ storage: storage });
+
+
+router.post('/register', upload.single("profilePicture"),  UserController.register)
 router.post ('/login', UserController.login)
 router.post('/googlelogin', UserController.googleLogin)
 
