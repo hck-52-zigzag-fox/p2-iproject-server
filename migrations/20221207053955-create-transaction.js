@@ -11,7 +11,11 @@ module.exports = {
       },
       UsersId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: "Users",
+          key: "id"
+        }
       },
       gameID: {
         type: Sequelize.INTEGER,
