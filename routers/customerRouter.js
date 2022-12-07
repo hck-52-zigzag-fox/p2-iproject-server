@@ -1,21 +1,22 @@
 const express = require("express");
-const controllerCustomer = require("../controllers/controller");
+const controller = require("../controllers/controller");
 const router = express.Router();
 const authentication = require("../middlewares/authentication")
 
-router.post("/register", controllerCustomer.register,);
-router.post("/login", controllerCustomer.login);
-router.post("/googleLogin", controllerCustomer.googleLogin)
+router.post("/register", controller.register,);
+router.post("/login", controller.login);
+router.post("/googleLogin", controller.googleLogin)
 
-router.get("/products", controllerCustomer.paginationAndFiltering)
-router.get("/products/:id", controllerCustomer.findOne)
-router.get("/categories", controllerCustomer.showCategories)
+router.get("/products", controller.paginationAndFiltering)
+router.get("/products/:id", controller.findOne)
+router.get("/categories", controller.showCategories)
 
 router.use(authentication);
 
-router.get("/bookmarks", controllerCustomer.readBookmark)
-router.post("/bookmarks/:ProductId",/*authorizationPublic,*/controllerCustomer.addBookmark)
-router.delete("/bookmarks/:ProductId",/*authorizationPublic,*/controllerCustomer.deleteBookmark)
+router.get("/bookmarks", controller.readBookmark)
+router.post("/midtrans", controller.checkout)
+router.post("/bookmarks/:ProductId",/*authorizationPublic,*/controller.addBookmark)
+router.delete("/bookmarks/:ProductId",/*authorizationPublic,*/controller.deleteBookmark)
 
 
 module.exports = router;
