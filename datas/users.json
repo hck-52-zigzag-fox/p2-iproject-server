@@ -1,0 +1,22 @@
+[
+    {
+        "email": "agusalih@gmail.com",
+        "password": "12345678",
+        "gender": "male",
+        "age": 23,
+        "weight": 60,
+        "height": 165,
+        "weeklyPhysicalActivity": "sedentary",
+        "status": "unpaid"
+    },
+    {
+        "email": "jisoo@gmail.com",
+        "password": "12345678",
+        "gender": "female",
+        "age": 45,
+        "weight": 60,
+        "height": 162,
+        "weeklyPhysicalActivity": "veryActive",
+        "status": "paid"
+    }
+]
