@@ -1,4 +1,4 @@
-const {  } = require('../models')
+const { foodLog } = require('../models')
 
 const authorization = async (req, res, next) => {
     try {
@@ -6,12 +6,12 @@ const authorization = async (req, res, next) => {
         const UserId = req.user.id
         const { id } = req.params
 
-        const user = await U.findByPk(id)
-        if (!gift) {
+        const log = await foodLog.findByPk(id)
+        if (!log) {
             throw { name: 'notFound' }
         }
 
-        if (receiverId != gift.receiverId) {
+        if (UserId != gift.UserId) {
             throw { name: 'forbidden' }
         }
 
