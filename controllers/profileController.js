@@ -1,10 +1,19 @@
 const { signToken, upload } = require("../helpers");
-
+const { dataUri } = require("../middlewares");
+const { uploader } = require("../middlewares/cloudinary");
 const { Profile } = require("../models");
 
 class ProfileController {
   static async editProfile(req, res, next) {
     try {
+      // upload images from public upload to cloudninary
+      // if (req.file) {
+      //   const file = dataUri(req).content;
+      //   return uploader.upload(file).then(async (result) => {
+      //     const image = result.url;
+      //   });
+      // }
+      // console.log(image, "<<<");
       let profilePict = "#";
       profilePict = req.file.path;
       // console.log(profilePict, "<<<");

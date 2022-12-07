@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { ProfileController } = require("../controllers/");
-const { upload } = require("../middlewares");
+const { upload } = require("../middlewares/cloudinary");
 router.get("/", ProfileController.getProfile);
 router.put(
   "/edit",
