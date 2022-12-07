@@ -7,7 +7,7 @@ module.exports = {
       {
         content:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget aliquam nunc nisl eget nisl.",
-        PostId: 1,
+        postId: 1,
         UserId: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -15,7 +15,7 @@ module.exports = {
       {
         content:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget aliquam nunc nisl eget nisl.",
-        PostId: 1,
+        postId: 1,
         UserId: 2,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -23,7 +23,7 @@ module.exports = {
       {
         content:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget aliquam nunc nisl eget nisl.",
-        PostId: 2,
+        postId: 2,
         UserId: 3,
         createdAt: new Date(),
         updatedAt: new Date(),

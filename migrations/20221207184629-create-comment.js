@@ -12,7 +12,7 @@ module.exports = {
       content: {
         type: Sequelize.STRING,
       },
-      PostId: {
+      postId: {
         type: Sequelize.INTEGER,
         references: {
           model: "Posts",

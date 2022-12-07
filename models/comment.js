@@ -10,21 +10,19 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Comment.belongsTo(models.User, { foreignKey: "UserId" });
-      Comment.belongsTo(models.Post, { foreignKey: "PostId" });
+      Comment.belongsTo(models.Post, { foreignKey: "postId" });
     }
   }
   Comment.init(
     {
       content: DataTypes.STRING,
-      PostId: {
+      postId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
           model: "Posts",
           key: "id",
         },
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
       },
       UserId: {
         type: DataTypes.INTEGER,
@@ -33,8 +31,6 @@ module.exports = (sequelize, DataTypes) => {
           model: "Users",
           key: "id",
         },
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
       },
     },
     {
