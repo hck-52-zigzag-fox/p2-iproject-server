@@ -1,0 +1,235 @@
+[
+    {
+        "id": 1,
+        "name": "Baju Santai Georgia",
+        "description": "Smart Casual bisa untuk melakukan banyak hal termasuk bekerja dan belajar",
+        "price": 291000,
+        "stock": 20,
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR77cTUzUwe-6QM9Tuy6TQhnuiC3WdUhtozew&usqp=CAU",
+        "CategoryId": 1
+    },{
+        "id": 1,
+        "name": "Kemeja smart",
+        "description": "Bahan terbaik cotton 24-s nyaman bisa dipakai untuk casual dan formal",
+        "price": 399000,
+        "stock": 20,
+        "imgUrl": "https://apollo-singapore.akamaized.net/v1/files/j3mbkq4c341b-ID/image",
+        "CategoryId": 1
+    },{
+        "id": 1,
+        "name": "Kemeja Pria Hitam",
+        "description": "Kemeja untuk kerja",
+        "price": 199000,
+        "stock": 20,
+        "imgUrl": "https://img.priceza.co.id/img2/2130004/0001/2130004-20220526201808-17291315250044338.jpg",
+        "CategoryId": 1
+    },{
+        "id": 1,
+        "name": "Kemeja Kerah Atas",
+        "description": "Smart Casual bisa untuk melakukan banyak hal termasuk bekerja dan belajar",
+        "price": 299000,
+        "stock": 20,
+        "imgUrl": "https://cf.shopee.co.id/file/438da2e027dacb15e696dad19f29afe1",
+        "CategoryId": 1
+    },{
+        "id": 1,
+        "name": "Baju lengan bawah",
+        "description": "Kemeja untuk kerja",
+        "price": 299000,
+        "stock": 20,
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShNgUB9r2SMq-VS3peITsLywxKHPuv3EnsWg&usqp=CAU",
+        "CategoryId": 1
+    },{
+        "id": 1,
+        "name": "Kemeja Pria Hitam",
+        "description": "Bahan terbaik cotton 24-s nyaman bisa dipakai untuk casual dan formal",
+        "price": 399000,
+        "stock": 20,
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThZocGWOSoCvhlhGVVTFWGbXWWY2WV_IWF6g&usqp=CAU",
+        "CategoryId": 1
+    },{
+        "id": 1,
+        "name": "Katun kemeja halus Hitam",
+        "description": "Baju terbaik dengan rajutan paling halus se Indonesia",
+        "price": 499000,
+        "stock": 20,
+        "imgUrl": "https://img.my-best.id/press_component/images/a06e96a2c2ac78a59af6fdd469dd2548.jpg?ixlib=rails-4.2.0&q=70&lossless=0&w=690&fit=max",
+        "CategoryId": 1
+    },{
+        "id": 1,
+        "name": "Kemeja Kerja Pria Hitam",
+        "description": "Dengan bahan cotton 30s-paling aman untuk kerja",
+        "price": 399000,
+        "stock": 20,
+        "imgUrl": "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/medium//88/MTA-36502215/brd-69012_kemeja-lengan-pendek-pria-hem-casual-barry-cowok-baju-pria-distro_full09.jpg",
+        "CategoryId": 1
+    },{
+        "id": 1,
+        "name": "Kemeja Kaos smart",
+        "description": "Smart Casual bisa untuk melakukan banyak hal termasuk bekerja dan belajar",
+        "price": 299000,
+        "stock": 20,
+        "imgUrl": "https://buttondownvintej.com/wp-content/uploads/2020/04/kemeja-hitam-lengan-pendek.jpg",
+        "CategoryId": 1
+    },{
+        "id": 1,
+        "name": "Baju BNIB",
+        "description": "Kemeja untuk kerja",
+        "price": 199000,
+        "stock": 20,
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0o8NiUXCmIrkgoFw3Zpp4JP6WarrwnutP9w&usqp=CAU",
+        "CategoryId": 1
+    },{
+        "id": 1,
+        "name": "John Lennon Shirt",
+        "description": "Bahan terbaik cotton 24-s nyaman bisa dipakai untuk casual dan formal",
+        "price": 299000,
+        "stock": 20,
+        "imgUrl": "https://apollo-singapore.akamaized.net/v1/files/ow5yrpqfti1l1-ID/image",
+        "CategoryId": 1
+    },{
+        "id": 1,
+        "name": "Paul McKartney Cotton Hitam",
+        "description": "Baju terbaik dengan rajutan paling halus se Indonesia",
+        "price": 99000,
+        "stock": 20,
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7i0h_riCSLEEQm6VpIL-ivbcTj45HN_wNiQ&usqp=CAU",
+        "CategoryId": 1
+    },{
+        "id": 1,
+        "name": "Dejavu Shirt Pria",
+        "description": "Smart Casual bisa untuk melakukan banyak hal termasuk bekerja dan belajar",
+        "price": 599000,
+        "stock": 20,
+        "imgUrl": "https://cf.shopee.co.id/file/ba87bdefb0501f0c91830ec2e23271e4",
+        "CategoryId": 1
+    },{
+        "id": 1,
+        "name": "Warisan pakaian Jember Utara",
+        "description": "Kemeja untuk kerja",
+        "price": 399000,
+        "stock": 20,
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnzponCxGh5p9gRarPmMuEaK3LuQYeHUwwLg&usqp=CAU",
+        "CategoryId": 1
+    },{
+        "id": 1,
+        "name": "Koleksi blous shirt",
+        "description": "Dengan bahan cotton 30s-paling aman untuk kerja",
+        "price": 299000,
+        "stock": 20,
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgorwoUyeT8OabiCnxQ0avDVoicBMjJsA_aPf0C9652FwZwWNZjUUTFQiMFclyfKe6vgU&usqp=CAU",
+        "CategoryId": 1
+    },{
+        "id": 1,
+        "name": "Kemeja Limited Edition",
+        "description": "Kemeja untuk kerja",
+        "price": 299000,
+        "stock": 20,
+        "imgUrl": "https://lzd-img-global.slatic.net/g/p/c70907a09bf2928b7370c85ac03d283f.jpg_720x720q80.jpg_.webp  ",
+        "CategoryId": 1
+    },{
+        "id": 1,
+        "name": "Atasan mencolok Pria Hitam",
+        "description": "Baju terbaik dengan rajutan paling halus se Indonesia",
+        "price": 199000,
+        "stock": 20,
+        "imgUrl": "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//106/MTA-35728873/brd-44261_baju-wanita-kemeja-wanita-blouse-alenya_full01.jpg",
+        "CategoryId": 2
+    },{
+        "id": 1,
+        "name": "Baju wanita Smart",
+        "description": "Smart Casual bisa untuk melakukan banyak hal termasuk bekerja dan belajar",
+        "price": 199000,
+        "stock": 20,
+        "imgUrl": "https://s3.bukalapak.com/img/3695884766/large/baju_wanita_murah_pakaian_cewek_atasan_blouse_top_fanta___ca.jpg",
+        "CategoryId": 2
+    },{
+        "id": 1,
+        "name": "Casual daily kekinian",
+        "description": "Bahan terbaik cotton 24-s nyaman bisa dipakai untuk casual dan formal",
+        "price": 99000,
+        "stock": 20,
+        "imgUrl": "https://lzd-img-global.slatic.net/g/p/56c7ffb62508f95e07cff6394bbbadc1.jpg_720x720q80.jpg_.webp",
+        "CategoryId": 2
+    },{
+        "id": 1,
+        "name": "Topper atas istimewa",
+        "description": "Kemeja untuk kerja",
+        "price": 199000,
+        "stock": 20,
+        "imgUrl": "https://apollo-singapore.akamaized.net/v1/files/t5skrfiti01f-ID/image;s=850x0",
+        "CategoryId": 2
+    },{
+        "id": 1,
+        "name": "Kekinian 2022 shirt",
+        "description": "Baju terbaik dengan rajutan paling halus se Indonesia",
+        "price": 299000,
+        "stock": 20,
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSjrPe7Vp3cB8_NOzCBvW-DaQ4YDi4KZdkVA&usqp=CAU",
+        "CategoryId": 2
+    },{
+        "id": 1,
+        "name": "Baju flexible use",
+        "description": "Dengan bahan cotton 30s-paling aman untuk kerja",
+        "price": 399000,
+        "stock": 20,
+        "imgUrl": "https://images.tokopedia.net/img/cache/500-square/product-1/2018/9/11/2117708/2117708_064e3fbd-57a6-4342-9a86-6d802fef5cd3",
+        "CategoryId": 2
+    },{
+        "id": 1,
+        "name": "Baju wanita usefull",
+        "description": "Kemeja untuk kerja",
+        "price": 499000,
+        "stock": 20,
+        "imgUrl": "https://lzd-img-global.slatic.net/g/p/e93f2f8cb57edef928b2c9c0e407ea3f.jpg_720x720q80.jpg_.webp",
+        "CategoryId": 2
+    },{
+        "id": 1,
+        "name": "Baju Uniqlo BNN",
+        "description": "Smart Casual bisa untuk melakukan banyak hal termasuk bekerja dan belajar",
+        "price": 299000,
+        "stock": 20,
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKB8bN99TxNAESMh_dE2D6fggYm1p3S2TjAA&usqp=CAU",
+        "CategoryId": 2
+    },{
+        "id": 1,
+        "name": "Baju wanita BNIB",
+        "description": "Baju terbaik dengan rajutan paling halus se Indonesia",
+        "price": 199000,
+        "stock": 20,
+        "imgUrl": "https://cf.shopee.co.id/file/5db09f34fdee60f406172b5f14c00292",
+        "CategoryId": 2
+    },{
+        "id": 1,
+        "name": "Baju Smart colorful kekinian",
+        "description": "Kemeja untuk kerja",
+        "price": 299000,
+        "stock": 20,
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKXNXyQ6rSXF2dpAL7siUR1XaoctXTp1hmpg&usqp=CAU",
+        "CategoryId": 2
+    },{
+        "id": 1,
+        "name": "Whiteless shirt",
+        "description": "Bahan terbaik cotton 24-s nyaman bisa dipakai untuk casual dan formal",
+        "price": 499000,
+        "stock": 20,
+        "imgUrl": "https://images.tokopedia.net/img/cache/500-square/hDjmkQ/2022/5/12/5d32ec71-49e1-4f9d-b572-cdaba2e08b0d.jpg",
+        "CategoryId": 2
+    },{
+        "id": 1,
+        "name": "Baju AS IT IS",
+        "description": "Dengan bahan cotton 30s-paling aman untuk kerja",
+        "price": 399000,
+        "stock": 20,
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFQpjpwN2VovfP2GAObqtplFXZkPdvEXE1xw&usqp=CAU",
+        "CategoryId": 2
+    },{
+        "id": 1,
+        "name": "Baju wanita Terlaris",
+        "description": "Baju terbaik dengan rajutan paling halus se Indonesia",
+        "price": 199000,
+        "stock": 20,
+        "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqZEDfwRuqkplXyG_oQTF2O1LFh2IyG-YeSw&usqp=CAU",
+        "CategoryId": 2
+    }
+]

@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const user = require('./userRouter')
-const topic = require('./topicRouter')
-const chat = require('./chatRouter')
+const customer = require("./customerRouter")
 
-router.use("/users", user)
-router.use("/topics", topic)
-router.use("/chats", chat)
+router.get("/", (req, res) => {
+  res.send(`Hello World Sekut Banget`);
+});
+
+router.use("/pub", customer)
 
 module.exports = router;

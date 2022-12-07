@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "username": "Sukram",
+        "email": "markus@gmail.com",
+        "password": "123123123",
+        "role" : "customer",
+        "phoneNumber" : "081299072451",
+        "address" : "Jl. Cempaka Putih Barat no. 20e"
+    }
+]
