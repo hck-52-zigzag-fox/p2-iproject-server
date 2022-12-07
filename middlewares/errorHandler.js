@@ -15,6 +15,9 @@ function errorHandler(err, req, res, next) {
   } else if (name === "Invalid_Credential") {
     code = 401;
     message = "Email/password is invalid";
+  } else if (name === "Unauthorized" || name === "JsonWebTokenError") {
+    code = 401;
+    message = "Invalid token";
   } else {
     code = 500;
     message = "Internal server error";
