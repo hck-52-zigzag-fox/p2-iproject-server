@@ -35,7 +35,7 @@
         "name": "Mars",
         "discoveredBy": "Unknown",
         "discoveryDate": "",
-        "imageUrl": "",
+        "imageUrl": "https://i.ibb.co/DKmYb0C/mars.png",
         "customObject": false,
         "type": "Planet"
     },
