@@ -15,6 +15,7 @@ router.use(authentication);
 
 router.get("/bookmarks", controller.readBookmark)
 router.post("/midtrans", controller.checkout)
+router.delete("/bookmarks/customer/:CustomerId",controller.deleteAllBookmark )
 router.post("/bookmarks/:ProductId",/*authorizationPublic,*/controller.addBookmark)
 router.delete("/bookmarks/:ProductId",/*authorizationPublic,*/controller.deleteBookmark)
 

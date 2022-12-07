@@ -225,6 +225,20 @@ class ControllerPublic {
     }
   }
 
+  static async deleteAllBookmark(req,res,next){
+    try {
+      const { CustomerId } = req.params;
+      await Bookmark.destroy({
+        where: {
+          CustomerId,
+        },
+      });
+      res.status(200).json(`Success Buy`);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   static async checkout(req, res, next) {
     try {
       const findBookedProduct = await Bookmark.findAll({
