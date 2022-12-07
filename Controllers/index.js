@@ -1,4 +1,5 @@
 const { User } = require('../models/index')
+const axios = require("axios");
 const { compareHashPassword, createToken, sendEmail } = require("../helpers/index");
 
 class Controller {
@@ -60,6 +61,38 @@ class Controller {
             res.status(200).json({ message: `${foundUser.email} success updated status into ${status}` });
         } catch (err) {
             next(err);
+        }
+    }
+
+    static async showTeams(req, res, next) {
+        try {
+            const { data } = await axios({
+                method: "GET",
+                url: 'https://free-nba.p.rapidapi.com/teams',
+                headers: {
+                    'X-RapidAPI-Key': 'e1eba056a8mshdb43c782b6c0609p1e7846jsn2de07ec09145',
+                    'X-RapidAPI-Host': 'free-nba.p.rapidapi.com'
+                }
+            })
+            res.status(200).json(data)
+        } catch (err) {
+            next(err)
+        }
+    }
+
+    static async showPlayer(req, res, next) {
+        try {
+            const { data } = await axios({
+                method: "GET",
+                url: 'https://free-nba.p.rapidapi.com/players',
+                headers: {
+                    'X-RapidAPI-Key': 'e1eba056a8mshdb43c782b6c0609p1e7846jsn2de07ec09145',
+                    'X-RapidAPI-Host': 'free-nba.p.rapidapi.com'
+                }
+            })
+            res.status(200).json(data)
+        } catch (err) {
+            next(err)
         }
     }
 }
