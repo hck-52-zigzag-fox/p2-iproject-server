@@ -1,5 +1,5 @@
 var admin = require("firebase-admin");
-
+const { Profile } = require("../models");
 var serviceAccount = require("./fiane-socialbook-firebase-adminsdk-ydjgo-f42a42d047.json");
 
 var fire = admin.initializeApp({
@@ -10,13 +10,35 @@ class ChatController {
   static async addChat(req, res, next) {
     try {
       const { message } = req.body;
-
+      let profileSender = await Profile.findOne({
+        where: {
+          UserId: +req.user.id,
+        },
+      });
+      let profileReceiver = await Profile.findOne({
+        where: {
+          UserId: +req.body.ReceiverId,
+        },
+      });
+      let dataSender = {
+        name: profileSender.name,
+        profilePict: profileSender.profilePict,
+        UserId: profileSender.UserId,
+      };
+      let dataReceiver = {
+        name: profileReceiver.name,
+        profilePict: profileReceiver.profilePict,
+        UserId: profileReceiver.UserId,
+      };
+      console.log(dataSender, "<<<");
       const id = +req.user.id;
       const ReceiverId = +req.body.ReceiverId;
       const result = await db.collection("Chat").add({
         message,
         ReceiverId,
         SenderId: id,
+        dataSender: dataSender,
+        dataReceiver: dataReceiver,
         createdAt: new Date(),
         updatedAt: new Date(),
       });

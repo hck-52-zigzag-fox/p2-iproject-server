@@ -2,6 +2,7 @@ const { verifiyPassword, signToken } = require("../helpers");
 // require Oauth
 const { OAuth2Client } = require("google-auth-library");
 const { User } = require("../models");
+const speakeasy = require("speakeasy");
 class UserController {
   static async register(req, res, next) {
     try {
@@ -37,7 +38,7 @@ class UserController {
       let payload = { id: user.id, email: user.email };
       const access_token = signToken(payload);
 
-      res.status(200).json({ name: user.username, access_token });
+      res.status(200).json({ id: user.id, access_token });
     } catch (err) {
       next(err);
     }
@@ -73,6 +74,35 @@ class UserController {
       res.status(200).json({ email: user.email, access_token });
     } catch (err) {
       next(err);
+    }
+  }
+  static async get2FA(req, res, next) {
+    try {
+      const secret = speakeasy.generateSecret({
+        length: 20,
+        encoding: "base32",
+      });
+      res.status(200).json({ secret: secret.otpauth_url });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  static async verify2FAToken(req, res, next) {
+    try {
+      const { token, secret } = req.body;
+      console.log(token, secret);
+      const verified = speakeasy.totp.verify({
+        secret: secret,
+        encoding: "base32",
+        token: token,
+      });
+      if (!verified) {
+        throw { name: "InvalidToken" };
+      }
+      console.log(verified);
+      res.status(200).json({ message: "Token verified" });
+    } catch (error) {
+      next(error);
     }
   }
 }
