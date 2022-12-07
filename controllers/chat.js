@@ -4,9 +4,11 @@ const { Chat } = require("../models");
 class ControllerChat {
   static async getAll(req, res, next) {
     try {
+      // const {receiverId} = req.params
       const mychats = await Chat.findAll({
         where: {
-          [Op.or]: [{ ReceiverId: req.user.id }, { SenderId: req.user.id }],
+          [Op.or] : [{SenderId:req.user.id},{ReceiverId:req.user.id}],
+          // ReceiverId:receiverId
         },
       });
       res.status(200).json(mychats);

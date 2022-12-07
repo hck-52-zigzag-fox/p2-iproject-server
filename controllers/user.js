@@ -1,6 +1,7 @@
 const { comparePass } = require("../helpers/bcrypt");
 const { signToken } = require("../helpers/jwt");
 const { User } = require("../models");
+const { OAuth2Client } = require("google-auth-library");
 
 class ControllerUser {
   static async register(req, res, next) {
@@ -48,16 +49,18 @@ class ControllerUser {
         };
       }
       let access_token = signToken({
-        id:user.id,
-      })
-      res.status(200).json({access_token})
+        id: user.id,
+      });
+      res
+        .status(200)
+        .json({ access_token, email: user.email, role: user.role });
     } catch (error) {
       next(error);
     }
   }
 
   static googleLogin(req, res, next) {
-    try { 
+    try {
       const { google_token } = req.headers;
       const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
       async function verify() {
@@ -74,10 +77,10 @@ class ControllerUser {
           defaults: {
             email: payload.email,
             password: "user123",
-            role: "user",
+            role: "customer",
           },
-        }); 
-        let accessToken = jwtSign({ email: user.email });
+        });
+        let accessToken = signToken({ email: user.email });
         req.headers = { access_token: accessToken };
         res.status(200).json({
           access_token: accessToken,
@@ -87,6 +90,7 @@ class ControllerUser {
       }
       verify().catch(console.error);
     } catch (error) {
+      console.log(error);
       next(error);
     }
   }
