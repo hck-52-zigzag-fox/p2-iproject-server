@@ -1,7 +1,9 @@
 const { comparedPassword } = require("../helpers/bcrypt");
 const { signToken } = require("../helpers/jwt");
 const sendMail = require("../helpers/nodemailer");
-const { User } = require("../models/index");
+const { User, Profile } = require("../models/index");
+const DatauriParser = require("datauri/parser");
+const cloudinary = require("../helpers/cloudinary");
 
 class Controller {
   static async register(req, res, next) {
@@ -60,6 +62,31 @@ class Controller {
         username: foundUser.username,
         email: foundUser.email,
       });
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
+
+  static async addProfileUser(req, res, next) {
+    try {
+      const { gender, date0fBirth, location, games } = req.body;
+
+      const parser = new DatauriParser();
+
+      const pathImage = parser.format(req.file.originalname, req.file.buffer);
+
+      const image = await cloudinary.uploader.upload(pathImage.content);
+
+      const profile = await Profile.create({
+        imgUrl: image.secure_url,
+        gender,
+        date0fBirth,
+        location,
+        games,
+        UserId: req.user.id,
+      });
+      res.status(201).json(profile);
     } catch (err) {
       console.log(err);
       next(err);
