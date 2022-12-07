@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Employee.belongsTo(models.Category)
-      Employee.belongsTo(models.User)
+      Employee.hasOne(models.Transaction)
     }
   }
   Employee.init({
@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     education: DataTypes.STRING,
     imageUrl: DataTypes.STRING,
     status: DataTypes.STRING,
+    salary: DataTypes.STRING,
     CategoryId: DataTypes.INTEGER,
   }, {
     sequelize,

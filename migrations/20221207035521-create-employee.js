@@ -30,6 +30,9 @@ module.exports = {
       status: {
         type: Sequelize.STRING
       },
+      salary: {
+        type: Sequelize.STRING
+      },
       CategoryId: {
         type: Sequelize.INTEGER,
         references: {
