@@ -86,6 +86,7 @@ class Controller {
         order_by: "score",
         sort: "desc",
         sfw: true,
+        limit: 20,
       };
       let { page, type, status, order_by } = req.query;
       if (page) {
