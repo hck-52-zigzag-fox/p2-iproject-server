@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/Ansrdyn/p2-iproject-server-petshop#readme",
   "dependencies": {
+    "axios": "^1.2.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.18.2",

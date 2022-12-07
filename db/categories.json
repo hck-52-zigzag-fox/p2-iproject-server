@@ -1,14 +1,14 @@
 [
-  {
-    "name": "Makanan"
-  },
-  {
-    "name": "Kesehatan"
-  },
-  {
-    "name": "Perelengkapan"
-  },
-  {
-    "name": "Aksesoris"
-  }
-]
+    {
+      "name": "Makanan"
+    },
+    {
+      "name": "Kesehatan"
+    },
+    {
+      "name": "Perelengkapan"
+    },
+    {
+      "name": "Aksesoris"
+    }
+  ]

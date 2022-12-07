@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Product.belongsTo(models.Category)
-      Product.hasMany(models.UserProduct)
+      Product.hasMany(models.Order)
     }
   }
   Product.init(
@@ -36,18 +36,6 @@ module.exports = (sequelize, DataTypes) => {
           },
           notNull: {
             msg: `imageUrl Type is Required`,
-          },
-        },
-      },
-      quantity: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-          notEmpty: {
-            msg: `Quantity is Required`,
-          },
-          notNull: {
-            msg: `Quantity is Required`,
           },
         },
       },

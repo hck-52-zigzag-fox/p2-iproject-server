@@ -2,12 +2,12 @@ const express = require('express')
 const router = express.Router()
 const userRoute = require('./users')
 const productRoute = require('./product')
-const wishListRoute = require('./wishList')
+const orderRoute = require('./orders')
 const categoryRoute = require('./category')
 
 router.use('/users', userRoute)
 router.use('/product', productRoute)
-router.use('/wishlist', wishListRoute)
+router.use('/order', orderRoute)
 router.use('/category', categoryRoute)
 
 

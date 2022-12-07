@@ -2,14 +2,12 @@
     {
         "name" : "Royal canin Hair and Skin",
         "imageUrl" : "https://cf.shopee.co.id/file/d422d64fb0a8f9120331b8a4f4e090ba",
-        "quantity" : 100,
         "price" : 100000,
         "CategoryId": 1
     },
     {
         "name" : "Royal canin Persian",
         "imageUrl" : "https://i.imgur.com/O4V3HGC.jpg",
-        "quantity" : 80,
         "price" : 110000,
         "CategoryId": 1
     }
