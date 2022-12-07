@@ -13,5 +13,5 @@ app.use('/',  router)
 app.use(errorHandler)
 
 app.listen(port, () => {
-    console.log(`listening or port ${port}`);
+    console.log(`listening on port ${port}`);
 })

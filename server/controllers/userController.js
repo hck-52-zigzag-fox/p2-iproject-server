@@ -1,4 +1,4 @@
-const { User } = require("../models/index");
+const { User, Oshi, Member } = require("../models/index");
 const { comparePassword } = require("../helpers/bcrypt");
 const { createToken } = require("../helpers/jwt");
 const verify = require("../helpers/google");
@@ -7,7 +7,6 @@ class UserController {
   static async register(req, res, next) {
     try {
       const profilePict = req.file.path
-      // console.log(req.file.path, '<<<<<<<');
       const { username, email, password } = req.body;
       const create = await User.create({
         username,
@@ -21,8 +20,8 @@ class UserController {
         });
       }
     } catch (error) {
-      // next(error);
-      console.log(error);
+      next(error);
+      
     }
   }
 
@@ -78,7 +77,52 @@ class UserController {
         .status(200)
         .json({ access_token, email: foundUser.email, role: foundUser.role });
     } catch (error) {
-      console.log(error);
+      next(error)
+    }
+  }
+
+  static async userProfile(req, res, next) {
+    try {
+      const profile = await User.findOne(({
+        include: [
+          {model: Oshi, include: Member}
+        ],
+        where: { username: req.user.username },
+      }))
+      res.status(200).json(profile)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  static async addOneOshi(req, res, next) {
+    try {
+      const {MemberId} = req.params
+      const {username} = req.user
+
+      const oshi = await Oshi.create({
+        MemberId, username
+      })
+      res.status(200).json({
+        username: oshi.Userid,
+        MemberId: oshi.MemberId
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  static async getOshi(req, res, next) {
+    try {
+      const wota = await User.findOne(({
+        include: [
+          {model: Oshi, include: Member}
+        ],
+        where: { username: req.user.username },
+      }))
+      res.status(200).json(wota)
+    } catch (error) {
+      next(error)
     }
   }
 
@@ -91,7 +135,9 @@ class UserController {
         throw { name: "DATA NOT FOUND" };
       }
       res.status(200).json({message: 'status updated'})
-    } catch (error) {}
+    } catch (error) {
+      next(error)
+    }
   }
 }
 

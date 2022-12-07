@@ -5,7 +5,8 @@ const router = express()
 const authentication = require('../middlewares/authentication')
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
-const multer = require('multer')
+const multer = require('multer');
+
 
 cloudinary.config({
   cloud_name: "dqschoc1m",
@@ -28,6 +29,10 @@ router.post ('/login', UserController.login)
 router.post('/googlelogin', UserController.googleLogin)
 
 router.use(authentication)
-router.patch('/status', UserController.updateStatus)
+
+router.get('/:username/oshi', UserController.getOshi)
+router.get('/:username', UserController.userProfile)
+router.post('/oshi/:MemberId', UserController.addOneOshi)
+router.patch('/status',  UserController.updateStatus)
 
 module.exports = router
