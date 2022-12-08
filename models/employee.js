@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Employee.belongsTo(models.Category)
-      Employee.belongsTo(models.User)
     }
   }
   Employee.init({

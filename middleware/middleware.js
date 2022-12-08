@@ -2,6 +2,7 @@ const { verifyToken } = require("../helpers/helper");
 const { User } = require("../models");
 
 function errorHandler(err, req, res, next) {
+  console.log("err", err)
   let status = 500;
   let message = "Internal server error";
 
