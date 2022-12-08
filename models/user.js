@@ -26,10 +26,10 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: { msg: "Email kamu udah terdaftar beb.." },
+      unique: { msg: "Email kamu udah terdaftar.." },
       validate: {
-        notNull: { msg: 'kamu isi email atau aku bacok..' },
-        notEmpty: { msg: 'kamu isi email atau aku bacok..' }
+        notNull: { msg: 'Email harus diisi' },
+        notEmpty: { msg: 'Email harus diisi' }
       }
     },
     password: {
