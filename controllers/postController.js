@@ -1,4 +1,4 @@
-const { Post, User, Profile } = require("../models");
+const { Post, User, Profile, Comment } = require("../models");
 class PostController {
   static async findAll(req, res, next) {
     try {
@@ -7,13 +7,31 @@ class PostController {
         include: [
           {
             model: User,
+            attributes: ["id", "email"],
             include: [
               {
                 model: Profile,
+                attributes: ["name", "profilePict"],
+              },
+            ],
+          },
+          {
+            model: Comment,
+            include: [
+              {
+                model: User,
+                attributes: ["id", "email"],
+                include: [
+                  {
+                    model: Profile,
+                    attributes: ["name", "profilePict"],
+                  },
+                ],
               },
             ],
           },
         ],
+
         order: [["createdAt", "DESC"]],
       });
       res.status(200).json(posts);
