@@ -1,7 +1,7 @@
 function errorHandler(err, req, res, next){
     let status = 500
     let message = "Internal Server Error"
-    // console.log(err.response.status)
+    console.log(err)
 
     if(err.name === 'SequelizeValidationError' || err.name === 'SequelizeUniqueConstraintError'){
         status = 400
@@ -21,6 +21,21 @@ function errorHandler(err, req, res, next){
     }else if(err.name === 'JsonWebTokenError' || err.name === 'InvalidToken'){
         status = 401
         message = "Invalid token"
+    }else if(err.name === 'MidtransError'){
+        status = err.httpStatusCode
+        message = err.ApiResponse.error_messages
+    }else if(err.name === 'AlreadyOwned'){
+        status = 400
+        message = "You already owned this game"
+    }else if(err.name === 'DataNotFound'){
+        status = 404
+        message = "Data not found"
+    }else if(err.name === 'AlreadyPaid'){
+        status = 400
+        message = "This order already paid"
+    }else if(err.name === 'Forbidden'){
+        statusCode = 403
+        message = "You don't have access"
     }
 
     res.status(status).json({message})

@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     gameID: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notNull: {msg: "Game Id is required"},
@@ -31,13 +31,14 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     steamAppID: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notNull: {msg: "Steam App Id is required"},
         notEmpty: {msg: "Steam App Id is required"}
       }
-    }
+    },
+    status: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Transaction',

@@ -5,4 +5,8 @@ router.post('/register', UserController.register)
 
 router.post('/login', UserController.login)
 
+router.post('/googleLogin', UserController.googleLogin)
+
+router.get('/motivational', UserController.motivationalQuotes)
+
 module.exports = router
