@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "setup": "npm install pg express sequelize dotenv bcryptjs jsonwebtoken cors && npx sequelize-cli init && mkdir controllers helpers middlewares && touch .env .env.template controller.js app.js authentication errorHandler.js && touch .gitignore .env.template && echo node_modules >> .gitignore, .env",
-    "db": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
+    "db": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "dev": "NODE_ENV=development npx nodemon app.js",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
