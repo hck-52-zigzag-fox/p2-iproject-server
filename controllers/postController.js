@@ -29,6 +29,7 @@ class PostController {
                 ],
               },
             ],
+            order: [["createdAt", "ASC"]],
           },
         ],
 

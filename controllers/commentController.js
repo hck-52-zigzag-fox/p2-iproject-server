@@ -8,7 +8,7 @@ class CommentController {
         where: {
           postId,
         },
-        order: [["createdAt", "DESC"]],
+        order: [["createdAt", "ASC"]],
         include: [
           {
             model: User,
