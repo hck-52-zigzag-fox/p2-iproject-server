@@ -6,6 +6,7 @@ const authentication = require("../middlewares/authentication")
 router.post("/register", controller.register,);
 router.post("/login", controller.login);
 router.post("/googleLogin", controller.googleLogin)
+router.get("/speech", controller.speechToText)
 
 router.get("/products", controller.paginationAndFiltering)
 router.get("/products/:id", controller.findOne)

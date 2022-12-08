@@ -279,6 +279,20 @@ class ControllerPublic {
       console.log(error);
     }
   }
+
+  static async speechToText(req,res,next){
+    console.log(`mausk speech`)
+    try {
+      if (!("webkitSpeechRecognition" in window) || !("SpeechRecognition" in window)) {
+        upgrade();
+      }
+      let speech = true;
+        window.SpeechRecognition = window.webkitSpeechRecognation;
+        const recognation = new SpeechRecognition();
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 module.exports = ControllerPublic;
