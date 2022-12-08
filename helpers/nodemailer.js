@@ -16,9 +16,9 @@ function sendEmail(email) {
   const option = {
     from: "muhammadjanu30@gmail.com",
     to: email,
-    subject: "Success Booking!",
+    subject: "Success Create Account!",
     text: "Your motorcycle is ready to ride!",
-    html: `Congratulation, your booking has been successed. Keep your eyes on the track an avoid every accidents, Speeding is live.`,
+    html: `Congratulation, your account has been created. Keep your eyes on the track an avoid every accidents, Speeding is live.`,
   };
 
   return new Promise((resolve, reject) => {

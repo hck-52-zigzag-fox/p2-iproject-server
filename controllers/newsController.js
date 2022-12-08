@@ -7,8 +7,8 @@ class NewsController {
         method: "GET",
         url: "https://bing-news-search1.p.rapidapi.com/news",
         params: {
-          category: "Sports",
-          mkt: "en-US",
+          category: "ScienceAndTechnology",
+          mkt: "en-GB",
           safeSearch: "Off",
           textFormat: "Raw",
         },

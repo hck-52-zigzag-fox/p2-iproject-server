@@ -1,4 +1,5 @@
 const { OAuth2Client } = require("google-auth-library");
+const { sendEmail } = require("../helpers/nodemailer");
 const { comparePassword } = require("../helpers/password");
 const { createToken } = require("../helpers/token");
 const { User } = require("../models");
@@ -17,6 +18,7 @@ class UserController {
         phoneNumber,
         address,
       });
+      sendEmail(email);
       res.status(201).json({ id: newUser.id, email: newUser.email });
     } catch (err) {
       next(err);
