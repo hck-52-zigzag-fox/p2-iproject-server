@@ -38,7 +38,10 @@ module.exports = {
       status: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: "Unpaid"
+        defaultValue: "Unpaid",
+      },
+      ImageId: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

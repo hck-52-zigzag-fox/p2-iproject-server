@@ -50,11 +50,14 @@ module.exports = (sequelize, DataTypes) => {
           isInt: { msg: "ItemId must be an number" },
           min: {
             args: [0],
-            msg: "Price must be more than 0"
-          }
-        }
+            msg: "Price must be more than 0",
+          },
+        },
       },
       additionalDetail: {
+        type: DataTypes.STRING,
+      },
+      ImageId: {
         type: DataTypes.STRING,
       },
     },

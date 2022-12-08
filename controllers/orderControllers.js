@@ -1,5 +1,6 @@
 const { Order, User, Item } = require("../models/");
 const midtransClient = require("midtrans-client");
+const ImageKit = require("imagekit");
 
 class OrderController {
   static async fetchOrder(req, res, next) {
@@ -122,8 +123,8 @@ class OrderController {
           Item,
         ],
         where: {
-          UserId: req.user.id
-        }
+          UserId: req.user.id,
+        },
       });
 
       if (!order) {
@@ -139,7 +140,7 @@ class OrderController {
 
       let parameter = {
         transaction_details: {
-          order_id: 'midtrans -' + order.id + 'test',
+          order_id: "midtrans -" + order.id + "test",
           gross_amount: order.Item.price,
         },
         credit_card: {
@@ -154,7 +155,53 @@ class OrderController {
 
       res.status(201).json({ midtrans_token, parameter });
     } catch (err) {
-      console.log(err)
+      
+      next(err);
+    }
+  }
+  static async uploadImage(req, res, next) {
+    try {
+      const id = +req.params.id;
+      const { url, fileName } = req.body;
+      
+      const imagekit = new ImageKit({
+        publicKey: process.env.IMAGE_KIT_PUBLIC_KEY,
+        privateKey: process.env.IMAGE_KIT_PRIVATE_KEY,
+        urlEndpoint: "https://ik.imagekit.io/iprojectNadya/",
+      });
+
+      const foundOrder = await Order.findByPk(id);
+
+      if (!foundOrder) {
+        throw { name: "NotFound", model: "Order", id };
+      }
+
+      imagekit.upload(
+        {
+          file: url, //required
+          fileName: fileName, //required
+        },
+        async function (error, result) {
+          if (error) {
+            next(error);
+          } else {
+            const order = await Order.update(
+              { ImageId: result.fileId },
+              { where: { id } }
+            );
+
+            res.status(200).json(result);
+          }
+        }
+      );
+    } catch (err) {
+      next(err);
+    }
+  }
+  static async downloadImage(req, res, next) {
+    try {
+      const id = +req.params.id;
+    } catch (err) {
       next(err);
     }
   }
