@@ -1,7 +1,6 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-const SECRET = 'kepoDeh'
 
 function hashPassword(password){
     let hash = bcrypt.hashSync(password, 5)
@@ -14,12 +13,12 @@ function comparePassword(password, hash){
 }
 
 function signToken(payload){
-    let token = jwt.sign(payload, SECRET)
+    let token = jwt.sign(payload, process.env.SECRET)
     return token
 }
 
 function verifyToken(token){
-    let verify = jwt.verify(token, SECRET)
+    let verify = jwt.verify(token, process.env.SECRET)
     return verify
 }
 

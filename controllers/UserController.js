@@ -57,7 +57,7 @@ class UserController {
   static async googleLogin(req, res, next) {
     try {
       const token = req.headers.google_token;
-      const CLIENT_ID = "682129567640-sri4pagrhijdnq7q1rmd2h9mqfr0dieb.apps.googleusercontent.com";
+      const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 
       const client = new OAuth2Client(CLIENT_ID);
       const ticket = await client.verifyIdToken({

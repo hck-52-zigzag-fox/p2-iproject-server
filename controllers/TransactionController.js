@@ -8,7 +8,7 @@ class TransactionController {
 
       let snap = new midtransClient.Snap({
         isProduction: false,
-        serverKey: "SB-Mid-server-msADvjZNu1YiEToR_X-3h1fB",
+        serverKey: process.env.MIDTRANS_KEY,
       });
 
       const foundUser = await User.findByPk(id);
