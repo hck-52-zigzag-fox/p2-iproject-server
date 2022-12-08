@@ -5,6 +5,9 @@ const { User, Profile, Post, Comment } = require("../models/index");
 const DatauriParser = require("datauri/parser");
 const cloudinary = require("../helpers/cloudinary");
 const profile = require("../models/profile");
+const axios = require("axios");
+const { OAuth2Client } = require("google-auth-library");
+const client = new OAuth2Client(process.env.googleClientId);
 
 class Controller {
   static async register(req, res, next) {
@@ -67,6 +70,39 @@ class Controller {
       console.log(err);
       next(err);
     }
+  }
+
+  static async googleSignIn(req, res, next) {
+    let ticket = await client.verifyIdToken({
+      idToken: req.headers.google_token,
+      audience: process.env.googleClientId,
+    });
+    let payload = ticket.getPayload();
+
+    let [user, created] = await Customer.findOrCreate({
+      where: {
+        email: payload.email,
+      },
+      defaults: {
+        email: payload.email,
+        username: payload.given_name,
+        password: "ini dari google",
+      },
+      hooks: false,
+    });
+
+    const payloadGoogle = {
+      id: user.id,
+    };
+
+    const access_token = signToken(payloadGoogle);
+
+    res.status(200).json({
+      access_token: access_token,
+      id: user.id,
+      username: user.username,
+      email: user.email,
+    });
   }
 
   static async addProfileUser(req, res, next) {
@@ -156,6 +192,7 @@ class Controller {
     try {
       let post = await Post.findAll({
         attributes: ["id", "content", "UserId", "createdAt"],
+        order: [["createdAt", "DESC"]],
         include: {
           model: User,
           attributes: ["username"],
@@ -204,6 +241,22 @@ class Controller {
         },
       });
       res.status(200).json(comment);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async gamelist(req, res, next) {
+    try {
+      let { data } = await axios.get("https://mmo-games.p.rapidapi.com/games", {
+        headers: {
+          "X-RapidAPI-Key":
+            "4d09c8ec2dmsh7200cfc5f107c30p1afb41jsnd600d0d0e772",
+          "X-RapidAPI-Host": "mmo-games.p.rapidapi.com",
+        },
+        order: [["release_date", "DESC"]],
+      });
+      res.status(200).json(data);
     } catch (err) {
       next(err);
     }
