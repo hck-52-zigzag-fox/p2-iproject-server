@@ -2,7 +2,7 @@ const { comparePass } = require("../helpers/bcrypt");
 const { signToken } = require("../helpers/jwt");
 const { User } = require("../models");
 const { OAuth2Client } = require("google-auth-library");
-
+const sendMail = require("../helpers/nodemailer");
 class ControllerUser {
   static async register(req, res, next) {
     try {
@@ -15,9 +15,9 @@ class ControllerUser {
       const newUser = await User.create({
         email,
         password,
+        role:'customer'
       });
-      // kirim nodemailer
-      // nodemailer(newUser.email)
+      sendMail(newUser.email)
       res.status(201).json({ message: `Success register` });
     } catch (error) {
       next(error);
@@ -80,8 +80,7 @@ class ControllerUser {
             role: "customer",
           },
         });
-        let accessToken = signToken({ email: user.email });
-        req.headers = { access_token: accessToken };
+        let accessToken = signToken({ id: user.id });
         res.status(200).json({
           access_token: accessToken,
           email: user.email,
