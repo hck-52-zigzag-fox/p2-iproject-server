@@ -202,7 +202,8 @@ class ControllerPublic {
         },
         include: Product,
       });
-      // sendEmail(req.customer.email)
+      sendEmail(req.customer.email)
+      console.log(123)
       res.status(200).json({
         readBooked,
       });

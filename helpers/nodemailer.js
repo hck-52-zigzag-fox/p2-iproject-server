@@ -7,15 +7,15 @@ function sendEmail(email) {
       service: "gmail",
       secure: true,
       auth: {
-        user: "markus.sarsanto@gmail.com",
-        pass: "asdjahsgdausgd",
+        user: "gurinoputroyordan@gmail.com", //ada error di email markus.sarsanto@gmail.com, note from google : "Some apps and devices use less secure sign-in technology, which makes your account vulnerable. You can turn off access for these apps, which we recommend, or turn it on if you want to use them despite the risks. Google will automatically turn this setting OFF if it’s not being used."
+        pass: "uhajcodgpqgsuktu",
       },
       debug: true,
       logger: true,
     });
     let base_url = "http://localhost:3000/";
     const option = {
-      from: "markus.sarsanto@gmail.com",
+      from: "gurinoputroyordan@gmail.com",
       to: email,
       subject: "[SCA-REMINDER] Bookmark on SCA (Shopping Comparement App) is waiting! Do not miss the chance!",
       text: "Shopping is ongoing, will arrived by 3 days or less if you buy RIGHT NOW",
