@@ -7,8 +7,80 @@
     },
     {
         "name" : "Royal canin Persian",
-        "imageUrl" : "https://i.imgur.com/O4V3HGC.jpg",
+        "imageUrl" : "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//88/MTA-30248223/royal_canin_royal_canin_persian_30_-_10_kg_-_makanan_kucing_full01_o92tx1sx.jpg",
         "price" : 110000,
+        "CategoryId": 1
+    },
+    {
+        "name" : "Royal canin Kitten",
+        "imageUrl" : "http://p-id.ipricegroup.com/uploaded_fecc87192bab08d1b00d16f7a2298b21.jpg",
+        "price" : 140000,
+        "CategoryId": 1
+    },
+    {
+        "name" : "Royal canin Digestive",
+        "imageUrl" : "https://res.cloudinary.com/ruparupa-com/image/upload//f_auto,q_auto:eco/v1636386557/Products/10068114_1.jpg",
+        "price" : 210000,
+        "CategoryId": 2
+    },
+    {
+        "name" : "Nutri-plus gel",
+        "imageUrl" : "https://makassarhobi.com/wp-content/uploads/2020/04/LU3rIC3.jpg",
+        "price" : 125000,
+        "CategoryId": 2
+    },
+    {
+        "name" : "Pet Food Dispenser",
+        "imageUrl" : "https://images.tokopedia.net/img/cache/500-square/VqbcmM/2022/3/4/3ee2fd96-f2d2-4ee2-8bed-5b994a276fa2.jpg",
+        "price" : 400000,
+        "CategoryId": 3
+    },
+    {
+        "name" : "Catit Senses",
+        "imageUrl" : "https://lzd-img-global.slatic.net/g/p/dc3f188225666f9021ba8f494e8afcd1.jpg_720x720q80.jpg_.webp",
+        "price" : 510000,
+        "CategoryId": 3
+    },
+    {
+        "name" : "Bandana Kerah Plaid",
+        "imageUrl" : "https://ae01.alicdn.com/kf/HTB1ZYqJXtjvK1RjSspiq6AEqXXaZ/Anjing-Kucing-Bandana-Kerah-Plaid-Aksesoris-Hewan-Peliharaan-Anak-Anjing-Syal-Kerah-Dapat-Disesuaikan-untuk-Anjing.jpg_Q90.jpg_.webp",
+        "price" : 50000,
+        "CategoryId": 4
+    },
+    {
+        "name" : "Baju",
+        "imageUrl" : "https://cf.shopee.co.id/file/637ec7cb49d4fa061bb528e0b1f0c9e4",
+        "price" : 180000,
+        "CategoryId": 4
+    },
+    {
+        "name" : "Hernes",
+        "imageUrl" : "https://s1.bukalapak.com/img/1518868339/large/vest_harness_plus_tali_anjing_dan_kucing_premium.jpg",
+        "price" : 100000,
+        "CategoryId": 4
+    },
+    {
+        "name" : "Royal Canin Sensible",
+        "imageUrl" : "https://res.cloudinary.com/ruparupa-com/image/upload//f_auto,q_auto:eco/v1638162132/Products/10108036_1.jpg",
+        "price" : 380000,
+        "CategoryId": 2
+    },
+    {
+        "name" : "Royal Canin Puppy Xsmall",
+        "imageUrl" : "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//92/MTA-2905561/royal_canin_royal_canin_puppy_xsmall_makanan_anak_anjing_-dry-_1-5_kg-_full01_ttq4dlrn.jpg",
+        "price" : 100000,
+        "CategoryId": 1
+    },
+    {
+        "name" : "Treats Temptations",
+        "imageUrl" : "https://cf.shopee.co.id/file/f48b0ca97fe7cb8608d519b19c294961",
+        "price" : 60000,
+        "CategoryId": 1
+    },
+    {
+        "name" : "Lickable Treats",
+        "imageUrl" : "https://s7d2.scene7.com/is/image/PetSmart/5283720",
+        "price" : 70000,
         "CategoryId": 1
     }
 ]

@@ -9,9 +9,9 @@ module.exports = {
         return bcrypt.compareSync(password,hashedPass)
     },
     createToken(payload){
-        return jwt.sign(payload,"Rahasia")
+        return jwt.sign(payload, process.env.SECRET)
     },
     verifyToken(token){
-        return jwt.verify(token,"Rahasia")
+        return jwt.verify(token,process.env.SECRET)
     }
 }

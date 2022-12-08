@@ -8,8 +8,8 @@ class ProductController {
       });
       res.status(200).json(fetch);
     } catch (error) {
-      console.log(error);
-      // next(error);
+      // console.log(error);
+      next(error);
     }
   }
 }

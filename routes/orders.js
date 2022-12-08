@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const OrderController= require("../controllers/orderController");
-const { authentication } = require("../middlewares");
+const { authentication} = require("../middlewares");
 
 router.get('/city', OrderController
 .ongkir)
@@ -15,6 +15,8 @@ router.delete("/:id", OrderController
 .deleteProduct); 
 router.patch('/:id', OrderController
 .updateStatus)
+router.post('/payment', OrderController
+.midtrans)
 
 
 module.exports = router;

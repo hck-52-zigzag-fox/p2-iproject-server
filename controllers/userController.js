@@ -1,5 +1,5 @@
-// const { OAuth2Client } = require("google-auth-library");
 const { comparePass, createToken } = require("../helpers");
+const { OAuth2Client } = require("google-auth-library");
 const { User } = require("../models");
 class UserController {
   static async register(req, res, next) {
@@ -52,40 +52,37 @@ class UserController {
       next(error);
     }
   }
-  //google login
-  // static async userGoogleLogin(req, res, next) {
-  //   try {
-  //     const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-  //     const ticket = await client.verifyIdToken({
-  //       idToken: req.headers.google_token,
-  //       audience: process.env.GOOGLE_CLIENT_ID,
-  //     });
-  //     const payload = ticket.getPayload();
-  //     const [user, created] = await Customer.findOrCreate({
-  //       where: { email: payload.email },
-  //       defaults: {
-  //         username: "google_account",
-  //         email: payload.email,
-  //         password: "hacktiv123",
-  //         phoneNumber: "0987654321",
-  //       },
-  //       hooks: false,
-  //     });
-  //     const access_token = createCust({
-  //       id: user.id,
-  //     });
-  //     res.status(200).json({
-  //       access_token,
-  //       email: user.email,
-  //       role: user.role,
-  //     });
-  //   } catch (err) {
-  //     next(err);
-  //   }
-  // }
-
-
-  
+  // google login
+  static async userGoogleLogin(req, res, next) {
+    try {
+      const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+      const ticket = await client.verifyIdToken({
+        idToken: req.headers.google_token,
+        audience: process.env.GOOGLE_CLIENT_ID,
+      });
+      const payload = ticket.getPayload();
+      const [user, created] = await User.findOrCreate({
+        where: { email: payload.email },
+        defaults: {
+          username: "google_account",
+          email: payload.email,
+          password: "hacktiv123",
+          phoneNumber: "0987654321",
+        },
+        hooks: false,
+      });
+      const access_token = createToken({
+        id: user.id,
+      });
+      res.status(200).json({
+        access_token,
+        email: user.email,
+      });
+    } catch (err) {
+      console.log(err)
+      next(err);
+    }
+  }  
 }
 
 module.exports = UserController;

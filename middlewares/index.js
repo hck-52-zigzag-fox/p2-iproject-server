@@ -1,5 +1,5 @@
 const { verifyToken } = require("../helpers");
-const {User} = require('../models')
+const { User, Order, Product } = require("../models");
 module.exports = {
   async authentication(req, res, next) {
     try {
@@ -21,16 +21,18 @@ module.exports = {
     }
   },
 
-//   async authorization(req, res, next) {
-//     try {
-//       const id = req.params.id;
-//       const food = await Food.findByPk(id);
-//       if (food.UserId !== req.user.id) {
-//         throw { name: "FORBIDDEN" };
-//       }
-//       next();
-//     } catch (err) {
-//       next(err);
-//     }
-//   },
+  async authorization(req, res, next) {
+    try {
+      console.log("==========");
+      const id = req.params.id;
+      const product = await Product.findByPk(id);
+      if (product.UserId !== req.user.id) {
+        throw { name: "FORBIDDEN" };
+      }
+      next();
+    } catch (err) {
+      console.log(err, "2940928340982");
+      next(err);
+    }
+  },
 };
