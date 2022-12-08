@@ -2,6 +2,7 @@ const { User } = require('../models/index')
 const axios = require("axios");
 const { compareHashPassword, createToken, sendEmail } = require("../helpers/index");
 const { OAuth2Client } = require("google-auth-library");
+const midtransClient = require('midtrans-client');
 
 class Controller {
     static async register(req, res, next) {
@@ -139,6 +140,40 @@ class Controller {
             })
             res.status(200).json(data)
         } catch (err) {
+            next(err)
+        }
+    }
+
+    static async tokenMidtrans(req, res, next) {
+        try {
+            const user = await User.findByPk(req.user.id)
+            if (user.status == 'VIP') {
+                throw { name: 'Already_Upgrade' }
+            }
+
+            let snap = new midtransClient.Snap({
+                // Set to true if you want Production Environment (accept real transaction).
+                isProduction: false,
+                serverKey: process.env.MIDTRANS_KEY
+              });
+          
+              let parameter = {
+                transaction_details: {
+                  order_id: "YOUR-ORDERID-" + Math.floor(1000000 + Math.random() * 9000000),
+                  gross_amount: 100000
+                },
+                credit_card: {
+                  "secure": true
+                },
+                customer_details: {
+                  email: user.email,
+                }
+              };
+          
+              const midtransToken = await snap.createTransaction(parameter)
+              res.status(200).json(midtransToken);
+        } catch (err) {
+            console.log(err);
             next(err)
         }
     }

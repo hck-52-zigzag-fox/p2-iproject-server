@@ -11,6 +11,7 @@ router.use(authentication)
 router.get('/teams', Controller.showTeams)
 router.get('/players', Controller.showPlayer)
 router.patch('/upgrade', Controller.updateStatus)
+router.post('/tokens', Controller.tokenMidtrans)
 router.get('/matches', Controller.showMatches)
 
 module.exports = router;
