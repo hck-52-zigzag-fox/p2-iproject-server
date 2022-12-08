@@ -32,6 +32,7 @@ router.use(authentication)
 
 router.get('/:username/oshi', UserController.getOshi)
 router.get('/:username', UserController.userProfile)
+router.post('/MidtransToken', UserController.midtransToken)
 router.post('/:MemberId', UserController.addOneOshi)
 router.patch('/status',  UserController.updateStatus)
 

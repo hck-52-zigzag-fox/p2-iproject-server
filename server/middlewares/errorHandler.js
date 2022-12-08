@@ -33,6 +33,9 @@ function errorHandler(err, req, res, next) {
             statusCode = 403
             message = "Please Login First"
             break;
+            case "alreadyPaid":
+                statusCode = 400
+                message = `You've already puchase the official fans`
     }
 
     res.status(statusCode).json({ message })

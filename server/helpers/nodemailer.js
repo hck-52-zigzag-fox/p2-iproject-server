@@ -8,15 +8,15 @@ function sendEmail(email) {
         service: "gmail",
         secure: true,
         auth: {
-            user: "adrianlie068@gmail.com",
-            pass: "JKT48Terbaek"
+            user: "tweetwar2022@gmail.com",
+            pass: "eqobxeywsphedxyc"
         },
         debug: true,
         logger: true
     });
 
     const option = {
-        from: "adrianlie068@gmail.com",
+        from: "tweetwar2022@gmail.com",
         to: email,
         subject: "Acount Success Create",
         text: "Your Account has been create",

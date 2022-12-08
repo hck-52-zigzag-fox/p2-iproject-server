@@ -3,6 +3,7 @@ const { comparePassword } = require("../helpers/bcrypt");
 const { createToken } = require("../helpers/jwt");
 const verify = require("../helpers/google");
 const sendEmail = require('../helpers/nodemailer')
+const midtransClient = require('midtrans-client');
 
 
 class UserController {
@@ -22,7 +23,8 @@ class UserController {
         });
       
     } catch (error) {
-      next(error);
+      //next(error)
+     next(error)
       
     }
   }
@@ -49,7 +51,7 @@ class UserController {
       const access_token = createToken(payload);
       res.status(200).json({ access_token, email: user.email });
     } catch (error) {
-      next(error);
+     next(error)
     }
   }
 
@@ -79,7 +81,7 @@ class UserController {
         .status(200)
         .json({ access_token, email: foundUser.email, username: foundUser.username });
     } catch (error) {
-      next(error)
+      console.log(error)
     }
   }
 
@@ -93,7 +95,7 @@ class UserController {
       }))
       res.status(200).json(profile)
     } catch (error) {
-      next(error)
+      console.log(error)
     }
   }
 
@@ -110,7 +112,7 @@ class UserController {
         MemberId: oshi.MemberId
       })
     } catch (error) {
-      next(error)
+      console.log(error)
     }
   }
 
@@ -124,7 +126,7 @@ class UserController {
       }))
       res.status(200).json(wota)
     } catch (error) {
-      next(error)
+     next(error)
     }
   }
 
@@ -138,7 +140,43 @@ class UserController {
       }
       res.status(200).json({message: 'status updated'})
     } catch (error) {
+     next(error)
+    }
+  }
+
+  static async midtransToken(req, res, next) {
+    try {
+      const user = await User.findByPk(req.user.id)
+      if (user.status == 'Official') {
+        throw { name: 'alreadyPaid' }
+      }
+  
+      let snap = new midtransClient.Snap({
+        // Set to true if you want Production Environment (accept real transaction).
+        isProduction: false,
+        serverKey: 'SB-Mid-server-3h7VAxytKFkU0mEStRaUXWoK'
+      });
+  
+      let parameter = {
+        transaction_details: {
+          order_id: "YOUR-ORDERID-" + Math.floor(1000000 + Math.random() * 9000000),
+          gross_amount: 100000
+        },
+        credit_card: {
+          "secure": true
+        },
+        customer_details: {
+          email: user.email,
+        }
+      };
+  
+      const midtransToken = await snap.createTransaction(parameter)
+      res.status(200).json(midtransToken);
+      
+  
+    } catch (error) {
       next(error)
+    
     }
   }
 }
