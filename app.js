@@ -139,20 +139,23 @@ app.get('/food', async (req, res, next) => {
       cholesterolMg: food.cholesterolMg,
       proteinG: food.proteinG,
       carbsTotalG: food.carbsTotalG,
-      status: food.foodStatus
+      foodStatus: food.foodStatus
     }
 
     res.status(200).json(result)
 
   } catch (error) {
-    console.log(error);
     next(error)
   }
 })
 
 app.get('/popularfood', async (req, res, next) => {
   try {
-    const food = await popularFood.findAll()
+    const food = await popularFood.findAll({
+      attributes: {
+        exclude: ['createdAt', 'updatedAt']
+      }
+    })
 
     res.status(200).json(food)
 

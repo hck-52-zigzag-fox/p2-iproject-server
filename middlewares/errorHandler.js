@@ -45,10 +45,10 @@ const errorHandler = async (err, req, res, next) => {
             message = "You're already a paid member"
             break;
 
-        // case 'forbidden':
-        //     statusCode = 403
-        //     message = "You are not authorized"
-        //     break;
+        case 'forbidden':
+            statusCode = 403
+            message = "You are not authorized"
+            break;
 
         default:
             break;
