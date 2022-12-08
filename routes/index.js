@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const Controller = require("../Controllers");
-const { authentication, authorization } = require('../middlewares/index')
+const { authentication } = require('../middlewares/index')
 const router = express.Router();
 
 router.post('/register', Controller.register)
