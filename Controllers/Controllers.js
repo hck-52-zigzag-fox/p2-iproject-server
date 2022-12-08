@@ -71,7 +71,7 @@ class Controller {
 
   static async addProfileUser(req, res, next) {
     try {
-      const { gender, date0fBirth, location, games } = req.body;
+      const { gender, dateOfBirth, location, games } = req.body;
 
       const parser = new DatauriParser();
 
@@ -82,7 +82,7 @@ class Controller {
       const profile = await Profile.create({
         imgUrl: image.secure_url,
         gender,
-        date0fBirth,
+        dateOfBirth,
         location,
         games,
         UserId: req.user.id,
@@ -112,7 +112,7 @@ class Controller {
   static async listProfileById(req, res, next) {
     try {
       let { id } = req.params;
-      const Profiles = await Profile.findByPk(id, {
+      const Profiles = await Profile.findOne({
         attributes: [
           "id",
           "imgUrl",
@@ -121,12 +121,20 @@ class Controller {
           "location",
           "games",
         ],
+        where: {
+          UserId: id,
+        },
+        include: {
+          model: User,
+          attributes: ["username"],
+        },
       });
       if (!profile) {
         throw { name: "Not_Found" };
       }
       res.status(200).json(Profiles);
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
@@ -147,7 +155,7 @@ class Controller {
   static async listpost(req, res, next) {
     try {
       let post = await Post.findAll({
-        attributes: ["id", "content", "UserId"],
+        attributes: ["id", "content", "UserId", "createdAt"],
         include: {
           model: User,
           attributes: ["username"],
