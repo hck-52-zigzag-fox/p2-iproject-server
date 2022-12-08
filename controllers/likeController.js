@@ -1,20 +1,22 @@
-const { Liked } = require("../models/index");
+const { User, Liked } = require("../models/index");
 const axios = require("axios");
 
 class Controller {
   static async addLike(req, res, next) {
     try {
-      let { animeId } = req.params;
+      let { animeId, userId } = req.params;
       let { data } = await axios.get(
         `https://api.jikan.moe/v4/anime/${animeId}/full`
       );
+      // console.log(data.data.mal_id);
       let newLiked = await Liked.create({
-        malId: data.mal_id,
-        title: data.title,
-        type: data.type,
-        malUrl: data.url,
-        posterUrl: data.images.image_url,
-        released: data.aired.from,
+        UserId : userId,
+        malId: data.data.mal_id,
+        title: data.data.title,
+        type: data.data.type,
+        malUrl: data.data.url,
+        posterUrl: data.data.images.jpg.image_url,
+        released: data.data.aired.from,
         recommended: false,
       });
       res.status(201).json({ id: newLiked.id, title: newLiked.title });
@@ -29,7 +31,10 @@ class Controller {
         where: {
           UserId: userId
         },
-        order: [['id', 'ASC']]
+        order: [['id', 'ASC']],
+        include: {
+          model: User
+        }
       });
       res.status(200).json(likedAnime)
     } catch (error) {
@@ -39,6 +44,7 @@ class Controller {
   static async reccomend(req, res, next) {
     try {
       let { animeId, userId } = req.params;
+      console.log(animeId, userId);
       let foundAnime = await Liked.findOne({
         where: { UserId: userId, malId: animeId },
       });
@@ -49,7 +55,7 @@ class Controller {
         { recommended: true },
         { where: { UserId: userId, malId: animeId } }
       );
-      res.status(201).json({ id, LikeId: updateLike.id });
+      res.status(201).json({ id: userId, LikeId: updateLike.id });
     } catch (error) {
       next(error);
     }
@@ -57,6 +63,7 @@ class Controller {
   static async unreccomend(req, res, next) {
     try {
       let { animeId, userId } = req.params;
+      console.log(animeId, userId, '<<<<<<<<<<<<<<<<<');
       let foundAnime = await Liked.findOne({
         where: { UserId: userId, malId: animeId },
       });

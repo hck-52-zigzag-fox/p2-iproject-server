@@ -72,9 +72,14 @@ class Controller {
       next(error);
     }
   }
-  static async getRandomQuote(req, res, next) {
+  static async getRandomImage(req, res, next) {
     try {
-      let { data } = axios.get("https://animechan.vercel.app/api/random");
+      // console.log('hai');
+      let { data } = await axios({
+        method: 'get',
+        url: 'https://api.waifu.pics/sfw/waifu'
+      });
+      // console.log(data);
       res.status(200).json(data);
     } catch (error) {
       next(error);
@@ -110,7 +115,9 @@ class Controller {
       if (order_by) {
         params.order_by = order_by;
       }
-      let { data } = axios.get("https://api.jikan.moe/v4/anime", { params });
+      // console.log(params);
+      let { data } = await axios.get("https://api.jikan.moe/v4/anime", { params });
+      // console.log(data);
       res.status(200).json(data);
     } catch (error) {
       next(error);
@@ -118,9 +125,10 @@ class Controller {
   }
   static async getAnimeById(req, res, next) {
     try {
-      let { id } = req.query;
-      let { data } = axios.get(
-        "https://api.jikan.moe/v4/anime/" + id + "/full"
+      // console.log(req.params);
+      let { animeId } = req.params;
+      let { data } = await axios.get(
+        "https://api.jikan.moe/v4/anime/" + animeId + "/full"
       );
       res.status(200).json(data);
     } catch (error) {

@@ -19,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        notEmpty: { msg: "Mal Id cannot be empty" },
-        notNull: { msg: "Mal Id cannot be empty" },
+        notEmpty: { msg: "User Id cannot be empty" },
+        notNull: { msg: "User Id cannot be empty" },
       },
     },
     malId: {
