@@ -1,0 +1,32 @@
+[
+  {
+    "username": "username1",
+    "email": "mail1@mail.com",
+    "password": "password1",
+    "status": "Paid"
+  },
+  {
+    "username": "username2",
+    "email": "mail2@mail.com",
+    "password": "password2",
+    "status": "Free"
+  },
+  {
+    "username": "username3",
+    "email": "mail3@mail.com",
+    "password": "password3",
+    "status": "Free"
+  },
+  {
+    "username": "username4",
+    "email": "mail4@mail.com",
+    "password": "password4",
+    "status": "Paid"
+  },
+  {
+    "username": "username5",
+    "email": "mail5@mail.com",
+    "password": "password5",
+    "status": "Free"
+  }
+]
