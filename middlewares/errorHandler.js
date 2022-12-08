@@ -1,7 +1,7 @@
 async function errorHandler(err, req, res, next) {
   let message = "";
   let code;
-  console.log(err);
+  // console.log(err);
   switch (err.name) {
     case "not_found":
       code = 404;
@@ -31,7 +31,7 @@ async function errorHandler(err, req, res, next) {
       message = "internal server error";
       break;
   }
-  console.log(message);
+  // console.log(message);
   res.status(code).json({ msg: message });
 }
 
