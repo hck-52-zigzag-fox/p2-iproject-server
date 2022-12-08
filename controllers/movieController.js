@@ -67,7 +67,7 @@ class movieController {
 
             let parameter = {
                 "transaction_details": {
-                    "order_id": Math.floor(1000 + Math.random()),
+                    "order_id": Math.floor(Math.random() * 9999999),
                     "gross_amount": 1000
                 },
                 "credit_card": {
@@ -139,7 +139,7 @@ class movieController {
                 url: `https://api.themoviedb.org/3/movie/${recomendation}/recommendations?api_key=${process.env.APIkey}&language=en-US&page=1`,
                 method: "GET",
             })
-            console.log(data)
+            // console.log(data)
             res.status(200).json({ results: data.results.slice(0, 9) })
         } catch (error) {
             next(error)
@@ -172,11 +172,31 @@ class movieController {
             }
 
             let cart = await Cart.findAll(option)
-       
-            console.log(cart[0].Movie)
+
+            // console.log(cart[0].Movie)
             res.status(200).json({ cart })
         } catch (error) {
             console.log(error)
+        }
+    }
+
+    static async deleteCart(req, res, next) {
+        try {
+            let { id } = req.params
+            let option = {
+                where: {
+                    id
+                }
+            }
+            // let data = Cart.findByPk(id)
+            // if (!data) throw { name: 'NotFound' }
+            // console.log(data)
+            await Cart.destroy(option)
+
+            res.status(200).json({ messagge: `Movie was deleted` })
+
+        } catch (error) {
+            next(error)
         }
     }
 
