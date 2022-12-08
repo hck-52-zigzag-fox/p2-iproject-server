@@ -1,9 +1,22 @@
 const midtransClient = require("midtrans-client");
-const { User, Motorcycle } = require("../models");
+const { User, Motorcycle, Rent } = require("../models");
 
 class RentController {
   static async handleCreateRent(req, res, next) {
     try {
+      const UserId = +req.user.id;
+      const MotorcycleId = +req.params.id;
+
+      const foundMotorcycle = await Motorcycle.findByPk(MotorcycleId);
+      if (!foundMotorcycle) {
+        throw { name: "NOT_FOUND" };
+      }
+
+      const newRent = await Rent.create({
+        UserId,
+        MotorcycleId,
+      });
+      res.status(201).json(newRent);
     } catch (err) {
       nexy(err);
     }
