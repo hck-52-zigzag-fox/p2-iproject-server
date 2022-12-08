@@ -7,8 +7,6 @@ class RentController {
       const UserId = +req.user.id;
       const MotorcycleId = +req.params.id;
 
-      const foundUser = User.findByPk(UserId);
-
       const foundMotorcycle = await Motorcycle.findByPk(MotorcycleId);
       if (!foundMotorcycle) {
         throw { name: "NOT_FOUND" };
