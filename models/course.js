@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       Course.hasMany(models.MyCourse);
       Course.belongsTo(models.Mentor);
       Course.hasMany(models.Chapter);
+      Course.hasMany(models.Order);
     }
   }
   Course.init(
@@ -111,5 +112,6 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Course",
     }
   );
+
   return Course;
 };
