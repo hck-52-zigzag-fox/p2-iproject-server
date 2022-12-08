@@ -155,7 +155,24 @@ class OrderController {
 
       res.status(201).json({ midtrans_token, parameter });
     } catch (err) {
-      
+      next(err);
+    }
+  }
+  static async getOrderById(req, res, next) {
+    try {
+      const id = +req.params.id;
+
+      const foundOrder = await Order.findOne({
+        include: [{ model: User, attributes: { exclude: ["password"] } }, Item],
+        where: { id },
+      });
+
+      if (!foundOrder) {
+        throw { name: "NotFound", model: "Order", id };
+      }
+
+      res.status(200).json(foundOrder);
+    } catch (err) {
       next(err);
     }
   }
@@ -163,7 +180,7 @@ class OrderController {
     try {
       const id = +req.params.id;
       const { url, fileName } = req.body;
-      
+
       const imagekit = new ImageKit({
         publicKey: process.env.IMAGE_KIT_PUBLIC_KEY,
         privateKey: process.env.IMAGE_KIT_PRIVATE_KEY,
@@ -186,7 +203,7 @@ class OrderController {
             next(error);
           } else {
             const order = await Order.update(
-              { ImageId: result.fileId },
+              { ImageId: result.url },
               { where: { id } }
             );
 
@@ -194,13 +211,6 @@ class OrderController {
           }
         }
       );
-    } catch (err) {
-      next(err);
-    }
-  }
-  static async downloadImage(req, res, next) {
-    try {
-      const id = +req.params.id;
     } catch (err) {
       next(err);
     }
