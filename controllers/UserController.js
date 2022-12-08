@@ -52,6 +52,37 @@ class UserController {
       next(err);
     }
   }
+
+  static async googleLogin(req, res, next) {
+    try {
+      const token = req.headers.google_token;
+      const CLIENT_ID = "682129567640-sri4pagrhijdnq7q1rmd2h9mqfr0dieb.apps.googleusercontent.com";
+
+      const client = new OAuth2Client(CLIENT_ID);
+      const ticket = await client.verifyIdToken({
+        idToken: token,
+        audience: CLIENT_ID,
+      });
+      const googlePayload = ticket.getPayload();
+
+      const [user, created] = await User.findOrCreate({
+        where: { email: googlePayload.email },
+        defaults: {
+          email: googlePayload.email,
+          password: "login_by_google",
+        },
+        hooks: false,
+      });
+      const payload = { id: user.id };
+      const access_token = signToken(payload)
+      res.status(200).json({access_token, user: {
+        id: user.id,
+        email: user.email,
+      }})
+    } catch (err) {
+      next(err)
+    }
+  }
 }
 
 module.exports = UserController;
