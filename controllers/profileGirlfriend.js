@@ -7,6 +7,7 @@ class ControllerProfileGirlfriend {
       });
       res.status(200).json(girlfriends);
     } catch (error) {
+      console.log(error)
       next(error);
     }
   }

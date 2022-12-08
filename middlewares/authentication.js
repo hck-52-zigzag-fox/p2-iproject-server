@@ -4,6 +4,7 @@ async function authentication(req, res, next) {
   try {
     let profile;
     const decoded = verifyToken(req.headers.access_token);
+    console.log(decoded)
     let user = await User.findOne({
       where: {
         id: decoded.id,
@@ -32,6 +33,7 @@ async function authentication(req, res, next) {
       next();
     }
   } catch (error) {
+    console.log(error)
     next(error);
   }
 }
