@@ -1,8 +1,11 @@
 const express = require("express")
 const app = express()
-const port = 3700
+const port = process.env.PORT || 3700
 const router = require("./routers") 
-require('dotenv').config()
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+    }
+    
 const cors = require("cors")
 
 app.use(express.urlencoded({extended:true}))
