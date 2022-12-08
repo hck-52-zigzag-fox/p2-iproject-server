@@ -94,7 +94,7 @@ class OrderController {
         method: `GET`,
         url: `https://api.rajaongkir.com/starter/city`,
         headers: {
-          key: `14af9cd2b9019a4b1c9eedf82642b7c1`,
+          key: process.env.RAJA_ONGKIR,
         },
       });
       res.status(200).json(data);
