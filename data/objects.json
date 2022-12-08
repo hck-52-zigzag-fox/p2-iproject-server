@@ -1,0 +1,94 @@
+[
+    {
+        "name": "Sun",
+        "discoveredBy": "Unknown",
+        "discoveryDate": "",
+        "imageUrl": "https://i.ibb.co/BK79JF2/sun.png",
+        "customObject": false,
+        "type": "Star"
+    },
+    {
+        "name": "Mercury",
+        "discoveredBy": "Unknown",
+        "discoveryDate": "",
+        "imageUrl": "https://i.ibb.co/MkxqrC5/mercury.png",
+        "customObject": false,
+        "type": "Planet"
+    },
+    {
+        "name": "Venus",
+        "discoveredBy": "Unknown",
+        "discoveryDate": "1/1/1610",
+        "imageUrl": "https://i.ibb.co/4tDk9dG/venus.png",
+        "customObject": false,
+        "type": "Planet"
+    },
+    {
+        "name": "Earth",
+        "discoveredBy": "Unknown",
+        "discoveryDate": "",
+        "imageUrl": "https://i.ibb.co/k6sg3S9/earth.png",
+        "customObject": false,
+        "type": "Planet"
+    },
+    {
+        "name": "Mars",
+        "discoveredBy": "Unknown",
+        "discoveryDate": "",
+        "imageUrl": "https://i.ibb.co/DKmYb0C/mars.png",
+        "customObject": false,
+        "type": "Planet"
+    },
+    {
+        "name": "Jupiter",
+        "discoveredBy": "Unknown",
+        "discoveryDate": "",
+        "imageUrl": "https://i.ibb.co/B36CJh5/jupiter.png",
+        "customObject": false,
+        "type": "Planet"
+    },
+    {
+        "name": "Saturn",
+        "discoveredBy": "Unknown",
+        "discoveryDate": "",
+        "imageUrl": "https://i.ibb.co/cwNLYBj/saturn.png",
+        "customObject": false,
+        "type": "Planet"
+    },
+    {
+        "name": "Uranus",
+        "discoveredBy": "William Herschel",
+        "discoveryDate": "13/03/1781",
+        "imageUrl": "https://i.ibb.co/qYc5dF6/uranus.png",
+        "customObject": false,
+        "type": "Planet"
+    },
+    {
+        "name": "Neptune",
+        "discoveredBy": "Urbain Le Verrier, John Couch Adams, Johann Galle",
+        "discoveryDate": "23/09/1846",
+        "imageUrl": "https://i.ibb.co/NTvqstr/neptune.png",
+        "customObject": false,
+        "type": "Planet"
+    },
+    {
+        "name": "Pluto",
+        "discoveredBy": "Clyde W. Tombaugh",
+        "discoveryDate": "18/02/1930",
+        "imageUrl": "https://i.ibb.co/Rg5PzTj/pluto.png",
+        "customObject": false,
+        "type": "Dwarf Planet"
+    },
+    {
+        "name": "Moon",
+        "discoveredBy": "Unknown",
+        "discoveryDate": "",
+        "imageUrl": "https://i.ibb.co/w6y37ML/moon.png",
+        "customObject": false,
+        "type": "Moon"
+    }
+
+]
+
+
+
