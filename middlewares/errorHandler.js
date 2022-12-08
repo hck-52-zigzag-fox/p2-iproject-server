@@ -23,6 +23,10 @@ function errorHandler(err, req, res, next) {
             statusCode = 400;
             message = "Already Taken";
             break;
+        case "Already_Upgrade":
+            statusCode = 400;
+            message = "Already Upgrade";
+            break;
         case "SequelizeValidationError":
         case "SequelizeUniqueConstraintError":
             statusCode = 400;

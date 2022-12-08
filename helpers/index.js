@@ -7,8 +7,8 @@ const hashPassword = (password) => bcrypt.hashSync(password);
 const compareHashPassword = (password, hashPassword) => bcrypt.compareSync(password, hashPassword);
 
 //JWT
-const createToken = (payload) => jwt.sign(payload, "SECRET");
-const verifyToken = (token) => jwt.verify(token, "SECRET");
+const createToken = (payload) => jwt.sign(payload, process.env.SECRET);
+const verifyToken = (token) => jwt.verify(token, process.env.SECRET);
 
 //NODEMAILER
 function sendEmail(email) {
@@ -20,7 +20,7 @@ function sendEmail(email) {
         secure: true,
         auth: {
             user: "tweetwar2022@gmail.com",
-            pass: "eqobxeywsphedxyc"
+            pass: process.env.NODEMAILER_KEY
         },
         debug: true,
         logger: true
