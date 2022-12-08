@@ -25,7 +25,6 @@ class OrderController {
     } catch (error) {
       next(error);
       // console.log(error);
-      next(error);
     }
   }
   static async addOrderById(req, res, next) {
