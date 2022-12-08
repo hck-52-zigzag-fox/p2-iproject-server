@@ -7,7 +7,7 @@
     "education": "SMA",
     "imageUrl": "https://i.imgur.com/YTKQw4h.png",
     "status": "Hiring",
-    "salary": "2500000",
+    "salary": 2500000,
     "CategoryId": 3
   },
   {
@@ -18,7 +18,7 @@
     "education": "SMA",
     "imageUrl": "https://i.imgur.com/vkqXzP8.png",
     "status": "Hiring",
-    "salary": "2500000",
+    "salary": 2500000,
     "CategoryId": 1
   },
   {
@@ -29,7 +29,7 @@
     "education": "SMA",
     "imageUrl": "https://i.imgur.com/YTKQw4h.png",
     "status": "Hiring",
-    "salary": "2500000",
+    "salary": 2500000,
     "CategoryId": 2
   },
   {
@@ -40,7 +40,7 @@
     "education": "SMA",
     "imageUrl": "https://i.imgur.com/YTKQw4h.png",
     "status": "Hiring",
-    "salary": "2500000",
+    "salary": 2500000,
     "CategoryId": 3
   },
   {
@@ -51,7 +51,7 @@
     "education": "SMA",
     "imageUrl": "https://i.imgur.com/vkqXzP8.png",
     "status": "Hiring",
-    "salary": "2500000",
+    "salary": 2500000,
     "CategoryId": 1
   },
   {
@@ -62,7 +62,7 @@
     "education": "SMA",
     "imageUrl": "https://i.imgur.com/YTKQw4h.png",
     "status": "Hiring",
-    "salary": "2500000",
+    "salary": 2500000,
     "CategoryId": 2
   },
   {
@@ -73,7 +73,7 @@
     "education": "SMA",
     "imageUrl": "https://i.imgur.com/vkqXzP8.png",
     "status": "Hiring",
-    "salary": "2500000",
+    "salary": 2500000,
     "CategoryId": 1
   },
   {
@@ -84,7 +84,7 @@
     "education": "SMA",
     "imageUrl": "https://i.imgur.com/YTKQw4h.png",
     "status": "Hiring",
-    "salary": "2500000",
+    "salary": 2500000,
     "CategoryId": 2
   }
 ]
