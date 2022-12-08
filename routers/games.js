@@ -10,4 +10,6 @@ router.get('/cheapshark/:gameID', GameController.getGameFromCheapShark)
 
 router.use(authentication)
 
+router.get('/mygames', GameController.getOwnedGames)
+
 module.exports = router

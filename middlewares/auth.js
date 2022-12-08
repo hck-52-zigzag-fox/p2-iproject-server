@@ -1,5 +1,5 @@
 const {verifyToken} = require('../helpers/')
-const {User} = require('../models/')
+const {User, Transaction} = require('../models/')
 
 async function authentication(req, res, next){
     try{
@@ -27,4 +27,24 @@ async function authentication(req, res, next){
     }
 }
 
-module.exports = {authentication}
+async function authorization(req, res, next){
+    try{
+        let {id} = req.params
+        let UsersId = req.user.id
+        let transaction = await Transaction.findOne({where: {id}})
+        if(!transaction){
+            throw {name: "DataNotFound"}
+        }
+        if(transaction.status == "paid"){
+            throw {name: "AlreadyPaid"}
+        }
+        if(transaction.UsersId !== UsersId){
+            throw {name: "Forbidden"}
+        }
+        next()
+    }catch(err){
+        next(err)
+    }
+}
+
+module.exports = {authentication, authorization}
