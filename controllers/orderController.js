@@ -144,7 +144,8 @@ class OrderController {
           Product,
         ],
         where: {
-          UserId: req.user.id,
+          // UserId: req.user.id,
+          id: req.params.id,
         },
       });
       // Create Snap API instance
