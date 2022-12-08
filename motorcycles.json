@@ -1,0 +1,182 @@
+[
+  {
+    "BrandId": 1,
+    "type": "ZX10-R",
+    "cc": 985,
+    "price": 1200000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://asset.kompas.com/crops/3J_ezvrHzmM8r0l6DMHL8-7D53I=/0x107:2560x1814/750x500/data/photo/2020/11/24/5fbc2cf88f751.jpg"
+  },
+  {
+    "BrandId": 1,
+    "type": "H2 Carbon",
+    "cc": 1020,
+    "price": 1500000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://i.pinimg.com/736x/0a/8d/5a/0a8d5ab8704103ab080b3e9277eef1ab.jpg"
+  },
+  {
+    "BrandId": 1,
+    "type": "Z1000",
+    "cc": 996,
+    "price": 1300000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://i0.wp.com/warungasep.net/wp-content/uploads/2016/10/ninja-zx-1000-sx-green-2017.jpg?ssl=1"
+  },
+  {
+    "BrandId": 1,
+    "type": "1000 ABS",
+    "cc": 998,
+    "price": 1200000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://chiamotorpj.com.my/wp-content/uploads/sites/9/2017/11/Ninja-1000-ABS.png"
+  },
+  {
+    "BrandId": 2,
+    "type": "1000RR",
+    "cc": 995,
+    "price": 1100000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://imgcdn.oto.com/large/gallery/color/73/1585/honda-cbr1000rr-color-737238.jpg"
+  },
+  {
+    "BrandId": 2,
+    "type": "CB1000R",
+    "cc": 995,
+    "price": 1000000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://assets.pikiran-rakyat.com/crop/0x0:0x0/x/photo/2022/07/16/1279033940.jpg"
+  },
+  {
+    "BrandId": 2,
+    "type": "Goldwing",
+    "cc": 1800,
+    "price": 1700000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://carnetwork.s3.ap-southeast-1.amazonaws.com/file/929d206165844cb49f45743518b4d252.jpg"
+  },
+  {
+    "BrandId": 2,
+    "type": "CB650F",
+    "cc": 647,
+    "price": 850000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://images3.kingautos.net/2017/02/13/NRkReKNTzqzZ6zH.jpg"
+  },
+  {
+    "BrandId": 3,
+    "type": "R1M",
+    "cc": 998,
+    "price": 1200000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://asset.kompas.com/crops/rq7Bf1_9ccW1LwEbpx3H-jy8nJk=/0x72:896x669/750x500/data/photo/2020/09/15/5f607630dd5f0.jpg"
+  },
+  {
+    "BrandId": 3,
+    "type": "YZF R1",
+    "cc": 996,
+    "price": 1200000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://i.ndtvimg.com/i/2017-12/2018-yamaha-yzf-r1-tech-black_827x510_51512472602.jpg"
+  },
+  {
+    "BrandId": 3,
+    "type": "MT10",
+    "cc": 996,
+    "price": 1200000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://imgcdnblog.carmudi.com.ph/wp-content/uploads/2021/10/29111651/Yamaha-MT-10-2022-3.jpg"
+  },
+  {
+    "BrandId": 3,
+    "type": "TMAX",
+    "cc": 965,
+    "price": 1000000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://asset.kompas.com/crops/UjnCPIZ8tiClGBqZ8waNmjdXYHE=/106x80:906x613/750x500/data/photo/2018/01/31/2964009855.jpg"
+  },
+  {
+    "BrandId": 4,
+    "type": "Panigale V4",
+    "cc": 1010,
+    "price": 1400000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://cdn.autoportal.com/bp-v3/img/models/7e/b/ducati-panigale-v4-1509974166.jpeg"
+  },
+  {
+    "BrandId": 4,
+    "type": "XDIAVEL",
+    "cc": 968,
+    "price": 1200000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://gumlet.assettype.com/evoindia%2Fimport%2F2018%2F08%2FDucati-prototype.jpg"
+  },
+  {
+    "BrandId": 4,
+    "type": "Street Fighter V4",
+    "cc": 998,
+    "price": 1300000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://imgd.aeplcdn.com/393x221/n/bw/models/colors/ducati-select-model-matte-black-matte-carbon-and-red-1656939703058.gif?q=75"
+  },
+  {
+    "BrandId": 4,
+    "type": "Multistrada 950",
+    "cc": 950,
+    "price": 1100000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://www.semisena.com/wp-content/uploads/2020/03/Ducati-Multistrada-950-F.jpg"
+  },
+  {
+    "BrandId": 5,
+    "type": "GSX R1000",
+    "cc": 950,
+    "price": 1100000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://ardiantoyugo.com/wp-content/uploads/2020/12/2021-suzuki-gsx-r1000r-768x481.jpg"
+  },
+  {
+    "BrandId": 5,
+    "type": "GSX-S750",
+    "cc": 967,
+    "price": 1200000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://cdni.autocarindia.com/Utils/ImageResizer.ashx?n=https://cdni.autocarindia.com/ExtraImages/20180424050411_2018-Suzuki-GSX-S750-blue.jpg&w=700&q=90&c=1"
+  },
+  {
+    "BrandId": 5,
+    "type": "GSX SR Limited",
+    "cc": 967,
+    "price": 1200000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://i0.wp.com/www.asphaltandrubber.com/wp-content/uploads/2012/04/2012-Yoshimura-Suzuki-GSX-R-Limited-Edition-02.jpg"
+  },
+  {
+    "BrandId": 5,
+    "type": "GSX-R600",
+    "cc": 585,
+    "price": 900000,
+    "facility": "Helm fullface AGV",
+    "status": "available",
+    "imageUrl": "https://www.procycles.com.au/wordpress/wp-content/uploads/2017-Suzuki-GSX-R600c-845x570-1.jpg"
+  }
+]
