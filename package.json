@@ -1,0 +1,32 @@
+{
+  "name": "p2-iproject-server",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/smfriady/p2-iproject-server.git",
+  "author": "Sony MelliFriady <zoenasun@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.2.1",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.32.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "midtrans-client": "^1.3.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.8.0",
+    "sequelize": "^6.26.0"
+  },
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "npx nodemon ./bin/www",
+    "db:dev": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate"
+  },
+  "devDependencies": {
+    "google-auth-library": "^8.7.0",
+    "nodemon": "^2.0.20",
+    "sequelize-cli": "^6.5.2"
+  }
+}
