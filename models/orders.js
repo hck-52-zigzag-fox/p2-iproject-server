@@ -50,6 +50,18 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: `Integer is Required`,
+          },
+          notNull: {
+            msg: `Integer is Required`,
+          },
+        },
+      },
     },
     {
       sequelize,
