@@ -79,7 +79,7 @@ class Controller {
     });
     let payload = ticket.getPayload();
 
-    let [user, created] = await Customer.findOrCreate({
+    let [user, created] = await User.findOrCreate({
       where: {
         email: payload.email,
       },

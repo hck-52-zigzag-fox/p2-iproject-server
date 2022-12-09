@@ -12,7 +12,6 @@ router.post("/google-sign-in", Controller.googleSignIn);
 router.use(authentication);
 
 router.post("/profiles", multerUploads, Controller.addProfileUser);
-router.get("/users", Controller.listUsers);
 router.get("/profiles/:id", Controller.listProfileById);
 router.post("/posts", Controller.addPost);
 router.get("/posts", Controller.listpost);
