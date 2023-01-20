@@ -25,6 +25,7 @@ class UserController {
     } catch (error) {
       //next(error)
      next(error)
+     console.log(error);
       
     }
   }
@@ -180,5 +181,6 @@ class UserController {
     }
   }
 }
+
 
 module.exports = UserController;

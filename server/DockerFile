@@ -1,0 +1,9 @@
+FROM node:latest
+WORKDIR /server
+ENV PORT=3000
+ENV NODE_ENV=production
+ENV GOOGLE=
+ENV DATABASE_URL= 
+COPY ./ ./
+RUN npm install && npm cache clean --force
+CMD ["node", "app.js"]
