@@ -1,0 +1,14 @@
+FROM node:latest
+WORKDIR /server
+COPY . .
+RUN npm install --production
+ENV PORT=3000
+ENV NODE_ENV=production
+ENV SECRET=
+ENV X_RAPIDAPI_KEY=
+ENV MIDTRANS_SERVER_KEY=
+ENV NODEMAILER_PASS=
+ENV GOOGLE_CLIENT_ID=
+ENV DATABASE_URL=
+EXPOSE 3000
+CMD ["npm", "run", "start"]
